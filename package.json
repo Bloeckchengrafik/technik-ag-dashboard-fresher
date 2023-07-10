@@ -1,0 +1,10 @@
+{
+  "name": "technikag-mockup",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "frontend": "cd frontend && npm run start",
+  },
+  "author": "",
+  "license": "ISC"
+}

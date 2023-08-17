@@ -15,5 +15,22 @@ $GLOBALS["config"] = array(
         "password" => "*",
         "from" => "*",
         "fromName" => "*"
+    ),
+    "jwt" => array(
+        "payloadbase" => array(
+            "iss" => "goe-tec.goethe-projektserver.de",
+            "aud" => "goe-tec.goethe-projektserver.de"
+        ),
+        "expiration" => 3600 * 24, // 1 day
+        "privatekey" => <<<EOD
+-----BEGIN RSA PRIVATE KEY-----
+***
+-----END RSA PRIVATE KEY-----
+EOD,
+        'public_key' => <<<EOD
+-----BEGIN PUBLIC KEY-----
+***
+-----END PUBLIC KEY-----
+EOD
     )
 );

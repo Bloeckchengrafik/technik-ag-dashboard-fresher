@@ -42,4 +42,13 @@ class AuthKey
 
         return $authKeys;
     }
+
+    public static function create(User $user, string $theKey, string $method, bool $onceOnly): AuthKey
+    {
+        $db = database();
+        $stmt = $db->prepare('INSERT INTO AuthKey (user_id, `key`, method, once_only) VALUES (?, ?, ?, ?)');
+        $stmt->execute([$user->id, $theKey, $method, $onceOnly]);
+        $id = $db->lastInsertId();
+        return new AuthKey($id, $user->id, $theKey, $method, $onceOnly);
+    }
 }

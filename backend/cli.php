@@ -6,7 +6,8 @@ use function Modules\Utils\database;
 include_once 'src/Modules/Autoload.php';
 
 $sqlDrop = <<<SQL
-DROP TABLE IF EXISTS EMAIL;
+DROP TABLE IF EXISTS Email;
+DROP TABLE IF EXISTS StudentInformation;
 DROP TABLE IF EXISTS AuthKey;
 DROP TABLE IF EXISTS User;
 SQL;
@@ -35,6 +36,15 @@ CREATE TABLE IF NOT EXISTS Email
     receiver varchar(255) NOT NULL,
     subject  varchar(255) NOT NULL,
     content  TEXT         NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS StudentInformation
+(
+    user_id INTEGER PRIMARY KEY,
+    year INTEGER NOT NULL,
+    tutor TEXT NOT NULL,
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES User(id)
 );
 SQL;
 

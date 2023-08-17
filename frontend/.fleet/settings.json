@@ -1,0 +1,12 @@
+{
+    "editor.guides": [
+        80,
+        120
+    ],
+    "toolchains": [
+        {
+            "name": "TailwindCSS",
+            "path": "node_modules/@tailwindcss/language-server/"
+        },
+    ],
+}

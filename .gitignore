@@ -1,1 +1,3 @@
 .idea/
+backend/src/vendor
+backend/src/Modules/Config/Config.php

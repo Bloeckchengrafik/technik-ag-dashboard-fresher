@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "frontend": "cd frontend && npm run start",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend/src && php -S localhost:8000"
   },
   "author": "",
   "license": "ISC"

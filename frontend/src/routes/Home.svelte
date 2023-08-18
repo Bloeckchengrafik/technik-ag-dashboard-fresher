@@ -1,7 +1,8 @@
 <script lang="ts">
     import desk from '../assets/scroller/desk.jpg';
-    import Hero from "../lib/Hero.svelte";
-    import Banner from "../lib/Banner.svelte";
+    import Hero from "./Hero.svelte";
+    import Banner from "./Banner.svelte";
+    import Footer from "../lib/Footer.svelte";
 </script>
 <div class="h-full">
     <img src={desk} alt="desk"
@@ -33,10 +34,4 @@
 </div>
 
 <div class="h-10"></div>
-
-<div class="border-t-2 border-t-dark_fill p-5">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-        <span>&copy; {new Date().getFullYear()} Technik-AG des <a target="_blank" href="https://www.goethe-bensheim.de">Goethe-Gymnasiums Bensheim</a></span>
-        <span>Design by <a target="_blank" href="https://www.github.com/Bloeckchengrafik">Christian Bergschneider</a></span>
-    </div>
-</div>
+<Footer />

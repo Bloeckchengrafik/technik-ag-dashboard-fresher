@@ -33,13 +33,13 @@
             </div>
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" class:hidden={!open}>
                 <div class="text-sm lg:flex-grow">
-                    <a href="/about" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                    <a href="/login" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                         Anmelden
                     </a>
-                    <a href="/contact" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                    <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                         Registrieren
                     </a>
-                    <a href="/services" class="block mt-4 lg:inline-block lg:mt-0 mr-4"
+                    <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4"
                        use:link>
                         Systemstatus
                     </a>
@@ -48,7 +48,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="/contact" use:link>
+                    <a href="/book" use:link>
                         <button
                                 class="inline-block px-4 py-2 text-sm font-bold leading-none text-white bg-blue-500 border border-blue-500 rounded hover:border-transparent hover:text-blue-500 hover:bg-white mt-4 lg:mt-0">
                             Jetzt Buchen

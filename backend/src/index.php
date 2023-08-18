@@ -2,7 +2,9 @@
 include_once 'Modules/Autoload.php';
 
 use Modules\Utils\Json;
+use function Modules\Utils\Api\init;
 
+init();
 $goetheIsAvailable = gethostbyname('goethe-bensheim.de') !== 'goethe-bensheim.de';
 
 Json\ok([

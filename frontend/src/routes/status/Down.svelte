@@ -1,0 +1,1 @@
+<span class="inline-flex items-center gap-2 bg-red-400 bg-opacity-30 px-2 rounded-3xl"><span class="bg-red-400 w-2 rounded-3xl inline-block aspect-square"></span> DOWN</span>

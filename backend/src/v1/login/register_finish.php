@@ -32,21 +32,6 @@ if (!$works) {
 
 AuthKey::create($user, password_hash($body->password, PASSWORD_DEFAULT), AuthKey::$METHOD_EMAIL, false);
 
-if (!isset($body->studentInfo)) {
-    ok([
-        'jwt' => $user->createJwt(),
-    ]);
-    exit();
-}
-
-$studentInfo = $body->studentInfo;
-if (!isset($studentInfo->year) || !isset($studentInfo->tutor)) {
-    error('Jahrgang und Tutor sind erforderlich');
-    exit();
-}
-
-StudentInfo::create($user, $studentInfo->year, $studentInfo->tutor);
-
 ok([
     'jwt' => $user->createJwt(),
 ]);

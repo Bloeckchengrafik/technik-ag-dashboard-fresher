@@ -25,6 +25,13 @@ class AuthKey
         $this->once_only = $once_only;
     }
 
+    public function delete(): void
+    {
+        $db = database();
+        $stmt = $db->prepare('DELETE FROM AuthKey WHERE id = ?');
+        $stmt->execute([$this->id]);
+    }
+
     public static function fromUser(User $user): array
     {
         $db = database();
@@ -37,7 +44,7 @@ class AuthKey
 
         $authKeys = [];
         foreach ($result as $row) {
-            $authKeys[] = new AuthKey($row['id'], $row['user_id'], $row['key'], $row['method'], $row['once_only']);
+            $authKeys[] = new AuthKey($row['id'], $row['user_id'], $row['key'], $row['method'], $row['once_only'] === 1);
         }
 
         return $authKeys;
@@ -47,7 +54,7 @@ class AuthKey
     {
         $db = database();
         $stmt = $db->prepare('INSERT INTO AuthKey (user_id, `key`, method, once_only) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$user->id, $theKey, $method, $onceOnly]);
+        $stmt->execute([$user->id, $theKey, $method, $onceOnly ? 1 : 0]);
         $id = $db->lastInsertId();
         return new AuthKey($id, $user->id, $theKey, $method, $onceOnly);
     }

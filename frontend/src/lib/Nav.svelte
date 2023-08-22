@@ -16,14 +16,14 @@
     });
 </script>
 
-<div class="fixed w-full {!isOnTop || open ? 'bg-dark_fill shadow-lg' : ''} z-50 transition-colors">
+<div class="fixed w-full {!isOnTop || open ? 'bg-light_fill dark:bg-dark_fill shadow-lg' : ''} z-50 transition-colors">
     <nav class="max-w-7xl mx-auto relative">
         <div class="flex flex-wrap items-center justify-between p-5 mx-auto">
             <a href="/" class="flex items-center flex-shrink-0 mr-6 text-white" use:link>
                 <img src={logo} alt="logo" class="w-20"/>
             </a>
             <div class="block lg:hidden">
-                <button class="flex items-center px-3 py-2 text-white hover:text-white border-none"
+                <button class="flex items-center px-3 py-2 dark:text-white dark:hover:text-white text-dark hover:text-dark border-none"
                         on:click={() => open = !open}>
                     <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <title>Menu</title>

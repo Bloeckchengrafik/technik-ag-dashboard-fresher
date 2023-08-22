@@ -19,8 +19,8 @@
 <Scheduler interval={1000} scheduledFn={checkStatus}/>
 
 <div class="h-full flex items-center justify-center">
-    <div>
-        <h1 class="text-6xl font-bold">Systemstatus</h1>
+    <div class="w-min">
+        <h1 class="text-5xl font-black break-words">System-status</h1>
         <br/>
         {#await status}
             Warte auf Antwort...

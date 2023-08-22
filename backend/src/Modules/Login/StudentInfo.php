@@ -49,10 +49,7 @@ class StudentInfo
     {
         $db = database();
         $stmt = $db->prepare('INSERT INTO StudentInformation (user_id, year, tutor) VALUES (?, ?, ?)');
-        $stmt->bindValue('i', $user->id);
-        $stmt->bindValue('i', $year);
-        $stmt->bindValue('s', $tutor);
-        $stmt->execute();
+        $stmt->execute([$user->id, $year, $tutor]);
         return new StudentInfo($user->id, $year, $tutor, date('Y-m-d H:i:s'));
     }
 

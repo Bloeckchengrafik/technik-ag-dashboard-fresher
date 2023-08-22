@@ -27,7 +27,7 @@ $GLOBALS["config"] = array(
 ***
 -----END RSA PRIVATE KEY-----
 EOD,
-        'public_key' => <<<EOD
+        'publickey' => <<<EOD
 -----BEGIN PUBLIC KEY-----
 ***
 -----END PUBLIC KEY-----

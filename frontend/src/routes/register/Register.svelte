@@ -4,7 +4,8 @@
     import TextInput from "../../lib/AuthLayout/TextInput.svelte";
     import SubmitBtn from "../../lib/AuthLayout/SubmitBtn.svelte";
     import SubQuestionLink from "../../lib/AuthLayout/SubQuestionLink.svelte";
-    import {apiPost, apiToken} from "../api";
+    import {apiPost, apiToken} from "../../api";
+    import AuthGuard from "../../lib/AuthGuard.svelte";
 
     let goOn = false;
     let goOnSpinner = false;
@@ -216,6 +217,7 @@
     }
 
 </script>
+<AuthGuard onlyLoggedOut={true} />
 <AuthLayout
         title="Registrieren"
 >
@@ -302,7 +304,7 @@
                     bind:value={year}
             />
 
-            <SubmitBtn name={"Ich bin kein Schüler"} href="/#/dash"/>
+            <SubmitBtn name={"Ich bin kein*e Schüler*in"} href="/#/dash"/>
             <br />
             <br />
         {/if}

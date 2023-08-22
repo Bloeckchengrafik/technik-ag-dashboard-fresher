@@ -13,7 +13,6 @@ init();
 $body = json_decode(file_get_contents('php://input'));
 if (!isset($body->email)) {
     error('Email is required',);
-    exit();
 }
 
 $user = User::fromEmail($body->email);
@@ -22,7 +21,6 @@ if (!$user) {
         "userExists" => false,
         "needsCompleteRegistration" => false
     ]);
-    exit();
 }
 
 $authKeys = AuthKey::fromUser($user);

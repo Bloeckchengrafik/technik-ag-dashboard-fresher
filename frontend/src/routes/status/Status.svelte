@@ -1,7 +1,7 @@
 <script lang="ts">
     import Footer from "../../lib/Footer.svelte";
     import Scheduler from "../../lib/Scheduler.svelte";
-    import {apiGet} from "../api";
+    import {apiGet} from "../../api";
     import OK from "./OK.svelte";
     import Down from "./Down.svelte";
 

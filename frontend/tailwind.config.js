@@ -6,9 +6,9 @@ const config = {
         extend: {
             colors: {
                 dark: "#2b2b2b",
-                dark_fill: "#3b3b3b",
+                dark_fill: "#484848",
                 light: "#e5e5e5",
-                light_fill: "#f5f5f5",
+                light_fill: "#c7c7c7",
                 primary: "#d16a51",
                 secondary: "#d196d2",
                 tertiary: "#45ab95",

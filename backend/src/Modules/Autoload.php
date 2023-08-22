@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/Config/Config.php';
 include_once __DIR__ . '/../vendor/autoload.php';
+include_once __DIR__ . '/Login/Permission.php';
 include_once __DIR__ . '/Utils/Json.php';
 include_once __DIR__ . '/Utils/Database.php';
 include_once __DIR__ . '/Utils/Api.php';

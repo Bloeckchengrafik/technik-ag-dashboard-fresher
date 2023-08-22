@@ -12,13 +12,11 @@ init();
 $body = json_decode(file_get_contents('php://input'));
 if (!isset($body->email)) {
     error('Bitte alle Felder ausfüllen');
-    exit();
 }
 
 $user = User::fromEmail($body->email);
 if (!$user) {
     error('Dieser Benutzer existiert nicht');
-    exit();
 }
 
 // Check if the user has a password
@@ -33,14 +31,12 @@ foreach ($authKeys as $authKey) {
 
 if ($hasPassword) {
     error('Dieser Benutzer hat ein Passwort');
-    exit();
 }
 
 try {
     $user->sendConfirmationEmail();
 } catch (Exception $e) {
     error('Die E-Mail konnte nicht gesendet werden');
-    exit();
 }
 
 ok([]);

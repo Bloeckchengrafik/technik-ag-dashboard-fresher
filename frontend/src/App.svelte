@@ -2,6 +2,13 @@
     import Router from "svelte-spa-router";
     import {routes} from "./routes";
     import Nav from "./lib/Nav.svelte";
+    import {onMount} from "svelte";
+    import {refreshToken} from "./api";
+
+    onMount(() => {
+        let int = setInterval(async () => { await refreshToken(); }, 10000);
+        return () => clearInterval(int);
+    });
 </script>
 
 <main class="h-5/6">

@@ -1,9 +1,17 @@
 import {get, writable} from "svelte/store";
 
 let backend = import.meta.env.VITE_BACKEND
-export let apiToken = writable<string | null>('apiToken' in localStorage ? localStorage.apiToken : null)
+
+let apiTokenStr: string | null = null
+
+if (localStorage.getItem('apiToken')) {
+    apiTokenStr = localStorage.getItem('apiToken')
+}
+
+export let apiToken = writable<string | null>(apiTokenStr)
+
 apiToken.subscribe(value => {
-    localStorage.apiToken = value
+    localStorage.setItem('apiToken', value ? value : '')
 })
 
 export function apiGet(endpoint: string, requestInit: RequestInit = {}) {
@@ -43,3 +51,31 @@ export function apiPost(endpoint: string, body: any, requestInit: RequestInit = 
         body: JSON.stringify(body)
     });
 }
+
+export async function refreshToken() {
+    if (!get(apiToken)) return
+    let data = await apiGet("v1/login/jwtrefresh.php").then(r => r.json())
+    apiToken.set(data.jwt)
+}
+
+export function logout() {
+    apiToken.set("")
+    window.location.reload()
+}
+
+export type Permission =
+    "login" |
+    "showAsUser" |
+    "showAsTechnician" |
+    "showAsManager" |
+    "showAsAdmin";
+
+export type UserSpec = {
+    id: string
+    firstname: string
+    lastname: string
+    email: string
+    groups: string[]
+    permission: Permission[]
+}
+

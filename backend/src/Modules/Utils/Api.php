@@ -1,10 +1,11 @@
 <?php
 namespace Modules\Utils\Api;
 
+use Modules\Login\Permission;
 use Modules\Login\User;
 use function Modules\Utils\Json\error;
 
-function init($requiredAuth = 0): ?User
+function init(Permission $requiredAuth = null): ?User
 {
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Authorization, Origin');
@@ -33,6 +34,11 @@ function init($requiredAuth = 0): ?User
 
         if (!$user) {
             error('Invalid token', 401);
+        }
+
+        if (!$user->hasPermission($requiredAuth)) {
+            error('Insufficient permissions, got: ' . implode(', ', $user->getAllPermissions()). ', required: ' . $requiredAuth->value
+                , 403);
         }
 
         return $user;

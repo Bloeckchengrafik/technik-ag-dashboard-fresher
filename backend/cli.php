@@ -6,82 +6,8 @@ include_once 'src/Modules/Autoload.php';
 use function Modules\Utils\database;
 use Modules\Login\Permission;
 
-$sqlDrop = <<<SQL
-DROP TABLE IF EXISTS Email;
-DROP TABLE IF EXISTS StudentInformation;
-DROP TABLE IF EXISTS AuthKey;
-DROP TABLE IF EXISTS User;
-SQL;
-
-$sqlCreate = <<<SQL
-CREATE TABLE IF NOT EXISTS User (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    firstname TEXT NOT NULL,
-    lastname TEXT NOT NULL,
-    email TEXT NOT NULL UNIQUE
-);
-
-CREATE TABLE IF NOT EXISTS Permission (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name TEXT NOT NULL UNIQUE
-);
-
-CREATE TABLE IF NOT EXISTS UserPermission (
-    user_id INTEGER NOT NULL,
-    permission_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(id),
-    FOREIGN KEY (permission_id) REFERENCES Permission(id),
-    PRIMARY KEY (user_id, permission_id)
-);
-
-CREATE TABLE IF NOT EXISTS `Group` (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name TEXT NOT NULL UNIQUE
-);
-
-CREATE TABLE IF NOT EXISTS UserGroup (
-    user_id INTEGER NOT NULL,
-    group_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(id),
-    FOREIGN KEY (group_id) REFERENCES `Group`(id),
-    PRIMARY KEY (user_id, group_id)
-);
-
-CREATE TABLE IF NOT EXISTS GroupPermission (
-    group_id INTEGER NOT NULL,
-    permission_id INTEGER NOT NULL,
-    FOREIGN KEY (group_id) REFERENCES `Group`(id),
-    FOREIGN KEY (permission_id) REFERENCES Permission(id),
-    PRIMARY KEY (group_id, permission_id)
-);
-
-CREATE TABLE IF NOT EXISTS AuthKey (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    user_id INTEGER NOT NULL,
-    `key` TEXT NOT NULL UNIQUE,
-    method TEXT NOT NULL,
-    once_only BOOLEAN NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES User(id)
-);
-
-CREATE TABLE IF NOT EXISTS Email
-(
-    email_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    receiver varchar(255) NOT NULL,
-    subject  varchar(255) NOT NULL,
-    content  TEXT         NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS StudentInformation
-(
-    user_id INTEGER PRIMARY KEY,
-    year INTEGER NOT NULL,
-    tutor TEXT NOT NULL,
-    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES User(id)
-);
-SQL;
-
+$sqlDrop = file_get_contents("sql/drop.sql");
+$sqlCreate = file_get_contents("sql/create.sql");
 
 $isHelp = getopt('h', ['help']) || $argc === 1;
 

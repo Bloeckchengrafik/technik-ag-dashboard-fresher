@@ -82,6 +82,11 @@
                         <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                             Dashboard
                         </a>
+                        {#if user.permission.includes("denyBooking") === false}
+                            <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                                Buchen
+                            </a>
+                        {/if}
                     {/if}
                 </div>
                 <div class="flex items-center gap-3">

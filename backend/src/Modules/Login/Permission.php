@@ -11,4 +11,5 @@ enum Permission: string
     case ShowAsTechnician = "showAsTechnician";
     case ShowAsManager = "showAsManager";
     case ShowAsAdmin = "showAsAdmin";
+    case DenyBooking = "denyBooking";
 }

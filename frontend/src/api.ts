@@ -68,7 +68,8 @@ export type Permission =
     "showAsUser" |
     "showAsTechnician" |
     "showAsManager" |
-    "showAsAdmin";
+    "showAsAdmin" |
+    "denyBooking";
 
 export type UserSpec = {
     id: string

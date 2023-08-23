@@ -6,6 +6,8 @@
     import SubQuestionLink from "../../lib/AuthLayout/SubQuestionLink.svelte";
     import TextInput from "../../lib/AuthLayout/TextInput.svelte";
     import {apiPost, apiToken} from "../../api";
+    import {querystring} from "svelte-spa-router";
+    import {help} from "tailwindcss/src/oxide/cli/help";
 
     let error = ''
     let enabled = false
@@ -35,7 +37,11 @@
             loading = false
         } else {
             $apiToken = data.jwt
-            window.location.href = "/#/dash"
+            let query = new URLSearchParams($querystring)
+            if (query.has("redirect") && !query.get("redirect").includes(".")) {
+                console.log("%c ✳️ Redirecting to " + query.get("redirect"), "color: #00ff00");
+                window.location.href = query.get("redirect")
+            } else window.location.href = "/#/dash"
         }
     }}>
         <TextInput
@@ -63,7 +69,7 @@
             <SubQuestionLink
                     title="Hast du noch kein Konto?"
                     cta="Registrieren"
-                    ctaUrl="login"
+                    ctaUrl="register"
             />
             <SubQuestionLink
                     title="Passwort vergessen?"

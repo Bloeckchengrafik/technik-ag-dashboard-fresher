@@ -22,6 +22,7 @@
             if (onlyLoggedOut) {
                 // We're logged in, but we're not supposed to be
                 if (doRedirect) window.location.href = '/#/dash'
+                user = null
                 return
             }
 
@@ -44,12 +45,12 @@
 
             if (requiredPermission && !user.permission.includes(requiredPermission)) {
                 console.log("%c⚠️ %c User does not have required permission " + requiredPermission, "font-weight: bold", "color: red; font-weight: normal")
-                apiToken.set(null)
                 if (doRedirect) window.location.href = '/#/login?redirect=' + encodeURIComponent(window.location.hash)
                 return
             }
 
         } catch (e) {
+            user = null
             // Not a valid JWT - so we're not logged in
             if (onlyLoggedOut) {
                 return // We're not logged in, and we're not supposed to be

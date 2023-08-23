@@ -3,6 +3,7 @@ include_once '../../Modules/Autoload.php';
 
 use Modules\Email\Mailer;
 use Modules\Login\AuthKey;
+use Modules\Login\Permission;
 use Modules\Login\StudentInfo;
 use Modules\Login\User;
 use function Modules\Utils\Api\init;
@@ -32,6 +33,10 @@ if (!$works) {
 }
 
 AuthKey::create($user, password_hash($body->password, PASSWORD_DEFAULT), AuthKey::$METHOD_EMAIL, false);
+
+$user->permissions[] = Permission::LOGIN->value;
+$user->permissions[] = Permission::ShowAsUser->value;
+$user->save();
 
 ok([
     'jwt' => $user->createJwt(),

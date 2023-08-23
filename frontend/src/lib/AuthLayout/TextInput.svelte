@@ -8,7 +8,7 @@
 
 <div class="relative mb-6 w-full" data-te-input-state-active>
     <input  {...typeStuff}
-            class="border-b-2 border-b-neutral-200 dark:border-b-neutral-700 peer-focus:border-primary peer-data-[te-input-state-active]:border-primary peer block min-h-[auto] w-full border-0 bg-transparent px-0 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+            class="border-b-2 border-b-gray-400 dark:border-b-neutral-700 focus:border-b-primary peer-focus:border-primary peer-data-[te-input-state-active]:border-primary peer block min-h-[auto] w-full border-0 bg-transparent px-0 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id={id}
             bind:value
             data-te-input-state-active

@@ -13,6 +13,10 @@ if (!isset($body->email) || !isset($body->firstname) || !isset($body->lastname))
     error('Bitte alle Felder ausfüllen');
 }
 
+if (!filter_var($body->email, FILTER_VALIDATE_EMAIL)) {
+    error('Ungültige E-Mail');
+}
+
 $user = User::fromEmail($body->email);
 if ($user) {
     error('Dieser Benutzer existiert bereits');

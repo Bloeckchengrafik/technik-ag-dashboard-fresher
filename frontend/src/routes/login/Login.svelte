@@ -65,6 +65,11 @@
                     cta="Registrieren"
                     ctaUrl="login"
             />
+            <SubQuestionLink
+                    title="Passwort vergessen?"
+                    cta="Zurücksetzen"
+                    ctaUrl="reset-password"
+            />
         </div>
     </form>
 </AuthLayout>

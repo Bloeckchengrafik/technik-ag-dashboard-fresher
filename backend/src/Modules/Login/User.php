@@ -225,4 +225,23 @@ SQL);
     {
         return in_array($requiredAuth->value, $this->getAllPermissions());
     }
+
+    /**
+     * @throws Exception
+     */
+    public function sendPasswordResetEmail(): void
+    {
+        $rndm = random_bytes(3);
+        $key = bin2hex($rndm);
+
+        AuthKey::create($this, $key, AuthKey::$METHOD_PASSWORD_RESET, true);
+
+        $view = new View('password_reset');
+        $html = $view->render([
+            'key' => $key,
+            'user' => $this,
+        ]);
+
+        Mailer::send($this->email, 'GOETEC Passwortreset', $html);
+    }
 }

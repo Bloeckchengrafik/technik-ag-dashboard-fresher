@@ -3,6 +3,7 @@
     "require": {
         "firebase/php-jwt": "^6.8",
         "phpmailer/phpmailer": "^6.1",
-      "ext-pdo": "*"
+      "ext-pdo": "*",
+      "ext-gd": "*"
     }
 }

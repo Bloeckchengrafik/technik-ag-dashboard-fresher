@@ -1,6 +1,6 @@
 import {get, writable} from "svelte/store";
 
-let backend = import.meta.env.VITE_BACKEND
+export let backend = import.meta.env.VITE_BACKEND
 
 let apiTokenStr: string | null = null
 

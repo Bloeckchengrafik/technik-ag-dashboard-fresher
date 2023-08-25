@@ -8,8 +8,9 @@ use function Modules\Utils\Json\error;
 function init(Permission $requiredAuth = null): ?User
 {
     header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Authorization, Origin');
-    header('Access-Control-Allow-Methods:  POST, PUT, GET');
+    header('Access-Control-Allow-Headers: Authorization, Content-Type, X-Captcha-ID');
+    header('Access-Control-Expose-Headers: Authorization, Content-Type, X-Captcha-ID');
+    header('Access-Control-Allow-Methods: POST, PUT, GET');
 
     if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
         exit();

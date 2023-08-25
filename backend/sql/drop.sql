@@ -25,4 +25,5 @@ drop table if exists Event;
 drop table if exists EventType;
 drop table if exists Room;
 drop table if exists User;
+drop table if exists CompletelyAutomatedPublicTuringTestToTellComputersAndHumansApart;
 

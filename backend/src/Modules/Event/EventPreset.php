@@ -23,12 +23,17 @@ class EventPreset
 
     public function delete(): void
     {
-        database()->query('DELETE FROM EventPreset WHERE event_id = ? AND preset_id = ?', [$this->event_id, $this->preset_id]);
+        $db = database();
+        $statement = $db->prepare('DELETE FROM EventPreset WHERE event_id = ? AND preset_id = ?');
+        $statement->execute([$this->event_id, $this->preset_id]);
     }
 
     public static function create(int $event_id, int $preset_id): EventPreset
     {
-        database()->query('INSERT INTO EventPreset (event_id, preset_id) VALUES (?, ?)', [$event_id, $preset_id]);
+        $db = database();
+        $statement = $db->prepare('INSERT INTO EventPreset (event_id, preset_id) VALUES (?, ?)');
+        $statement->execute([$event_id, $preset_id]);
+
         return new EventPreset(
             event_id: $event_id,
             preset_id: $preset_id,
@@ -37,9 +42,11 @@ class EventPreset
 
     public static function byEventId(int $event_id): array
     {
-        $result = database()->query('SELECT * FROM EventPreset WHERE event_id = ?', [$event_id]);
+        $statement = database()->prepare('SELECT * FROM EventPreset WHERE event_id = ?');
+        $statement->execute([$event_id]);
+        $result = $statement->fetchAll();
         $presets = [];
-        while ($row = $result->fetch()) {
+        foreach ($result as $row) {
             $presets[] = new EventPreset(
                 event_id: $row['event_id'],
                 preset_id: $row['preset_id'],

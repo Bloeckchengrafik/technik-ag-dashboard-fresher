@@ -154,7 +154,7 @@ SQL
             $room_id,
             $title,
             $description,
-            $needs_consultation,
+            $needs_consultation ? 1 : 0,
             $from_time,
             $to_time,
             $construction_from,

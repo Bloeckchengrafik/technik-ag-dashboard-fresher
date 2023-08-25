@@ -1,9 +1,9 @@
 <script lang="ts">
     import Footer from "../../lib/Footer.svelte";
-    import AuthLayout from "../../lib/AuthLayout/AuthLayout.svelte";
-    import TextInput from "../../lib/AuthLayout/TextInput.svelte";
-    import SubmitBtn from "../../lib/AuthLayout/SubmitBtn.svelte";
-    import SubQuestionLink from "../../lib/AuthLayout/SubQuestionLink.svelte";
+    import AuthLayout from "../../lib/Forms/AuthLayout.svelte";
+    import TextInput from "../../lib/Forms/TextInput.svelte";
+    import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
+    import SubQuestionLink from "../../lib/Forms/SubQuestionLink.svelte";
     import {apiPost, apiToken} from "../../api";
     import AuthGuard from "../../lib/AuthGuard.svelte";
 

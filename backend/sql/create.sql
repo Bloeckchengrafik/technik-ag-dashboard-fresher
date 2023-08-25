@@ -235,3 +235,10 @@ CREATE TABLE IF NOT EXISTS Equipment
     FOREIGN KEY (location_id) REFERENCES EquipmentLocation (id),
     FOREIGN KEY (manufacturer_id) REFERENCES EquipmentManufacturer (id)
 );
+
+CREATE TABLE IF NOT EXISTS CompletelyAutomatedPublicTuringTestToTellComputersAndHumansApart
+(
+    id       INTEGER PRIMARY KEY AUTO_INCREMENT,
+    answer   TEXT    NOT NULL,
+    timeout  DATETIME NOT NULL DEFAULT TIMESTAMPADD(HOUR, 1, NOW())
+);

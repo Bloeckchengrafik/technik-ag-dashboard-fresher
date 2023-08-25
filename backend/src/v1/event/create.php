@@ -19,7 +19,6 @@ if (
     !isset($body->description) ||
     !isset($body->type_id) ||
     !isset($body->room_id) ||
-    !isset($body->location) ||
     !isset($body->needs_consultation) ||
     !isset($body->from) ||
     !isset($body->to) ||
@@ -27,29 +26,54 @@ if (
     !isset($body->construction_to) ||
     !isset($body->dismantling_from) ||
     !isset($body->dismantling_to) ||
-    !isset($body->presets)
+    !isset($body->presets) ||
+    !is_array($body->presets) ||
+    !isset($body->captcha) ||
+    !isset($body->captcha_id)
 ) {
     error('Bitte alle Felder ausfüllen');
 }
 
-$event = Event::create(
-    $user->id,
-    $body->type_id,
-    $body->room_id,
-    $body->title,
-    $body->description,
-    $body->needs_consultation,
-    $body->from,
-    $body->to,
-    $body->construction_from,
-    $body->construction_to,
-    $body->dismantling_from,
-    $body->dismantling_to
-);
+$db = database();
 
-for ($i = 0; $i < count($body->presets); $i++) {
-    $preset = $body->presets[$i];
-    EventPreset::create($event->id, $preset->preset_id);
+$statement = $db->prepare('SELECT `id` FROM `CompletelyAutomatedPublicTuringTestToTellComputersAndHumansApart` WHERE `answer` = ? AND `timeout` > NOW() AND `id` = ?');
+$statement->execute([$body->captcha, $body->captcha_id]);
+
+if ($statement->rowCount() === 0) {
+    error('Captcha falsch');
 }
+
+function parse_js_datetime()
+{
+
+}
+
+try {
+    $event = Event::create(
+        organizer_id: $user->id,
+        type_id: $body->type_id,
+        room_id: $body->room_id,
+        title: $body->title,
+        description: $body->description,
+        needs_consultation: $body->needs_consultation,
+        from_time: $body->from,
+        to_time: $body->to,
+        construction_from: $body->construction_from,
+        construction_to: $body->construction_to,
+        dismantling_from: $body->dismantling_from,
+        dismantling_to: $body->dismantling_to
+    );
+
+    for ($i = 0; $i < count($body->presets); $i++) {
+        $preset = $body->presets[$i];
+        EventPreset::create($event->id, $preset);
+    }
+
+} catch (Exception $e) {
+    error("Eingabe ungültig");
+}
+
+$statement = $db->prepare('DELETE FROM `CompletelyAutomatedPublicTuringTestToTellComputersAndHumansApart` WHERE `id` = ?');
+$statement->execute([$body->captcha_id]);
 
 ok($event->toArray());

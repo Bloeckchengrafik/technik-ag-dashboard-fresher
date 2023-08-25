@@ -1,10 +1,10 @@
 <script lang="ts">
     import AuthGuard from "../../lib/AuthGuard.svelte";
-    import AuthLayout from "../../lib/AuthLayout/AuthLayout.svelte";
+    import AuthLayout from "../../lib/Forms/AuthLayout.svelte";
     import Footer from "../../lib/Footer.svelte";
-    import SubmitBtn from "../../lib/AuthLayout/SubmitBtn.svelte";
-    import SubQuestionLink from "../../lib/AuthLayout/SubQuestionLink.svelte";
-    import TextInput from "../../lib/AuthLayout/TextInput.svelte";
+    import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
+    import SubQuestionLink from "../../lib/Forms/SubQuestionLink.svelte";
+    import TextInput from "../../lib/Forms/TextInput.svelte";
     import {apiPost, apiToken} from "../../api";
     import {querystring} from "svelte-spa-router";
     import {help} from "tailwindcss/src/oxide/cli/help";

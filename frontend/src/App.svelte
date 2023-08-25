@@ -6,7 +6,7 @@
     import {refreshToken} from "./api";
 
     onMount(() => {
-        let int = setInterval(async () => { await refreshToken(); }, 10000);
+        let int = setInterval(async () => { await refreshToken(); }, 30000);
         return () => clearInterval(int);
     });
 </script>

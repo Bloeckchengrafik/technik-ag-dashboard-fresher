@@ -1,8 +1,12 @@
 <script lang="ts">
+    import {createEventDispatcher} from "svelte";
+
     export let name = 'Senden';
     export let disabled = false;
     export let spinner = false;
     export let href = '';
+
+    const dispatch = createEventDispatcher();
 </script>
 
 <button
@@ -24,6 +28,8 @@
         on:click={() => {
             if (href) {
                 window.location.href = href;
+            } else {
+                dispatch('click');
             }
         }}
 >

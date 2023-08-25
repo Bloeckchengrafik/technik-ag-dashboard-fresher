@@ -7,8 +7,10 @@ const config = {
             colors: {
                 dark: "#2b2b2b",
                 dark_fill: "#484848",
-                light: "#f2f2f2",
-                light_fill: "#d2cac7",
+                light: "#e7e9ef",
+                light_fill: "#f5f5f5",
+                light_muted: "#5e5e5e",
+                dark_muted: "#c9c9c9",
                 primary: "#d16a51",
                 secondary: "#d196d2",
                 tertiary: "#45ab95",

@@ -5,6 +5,7 @@ import Register from "./routes/register/Register.svelte";
 import Login from "./routes/login/Login.svelte";
 import ResetPassword from "./routes/reset_password/ResetPassword.svelte";
 import Book from "./routes/book/Book.svelte";
+import Event from "./routes/event[id]/Event.svelte";
 
 export const routes = {
     "/": Home,
@@ -13,5 +14,6 @@ export const routes = {
     "/login": Login,
     "/reset-password": ResetPassword,
     "/book": Book,
+    "/event/:id": Event,
     "*": NotFound
 }

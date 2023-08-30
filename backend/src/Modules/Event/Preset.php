@@ -15,7 +15,9 @@ class Preset
 
     public static function byId(int $id): ?Preset
     {
-        $result = database()->query('SELECT * FROM Preset WHERE id = ?', [$id]);
+        $db = database();
+        $result = $db->prepare('SELECT * FROM Preset WHERE `id` = ?');
+        $result->execute([$id]);
         if ($result->rowCount() === 0) {
             return null;
         }
@@ -24,5 +26,13 @@ class Preset
             id: $row['id'],
             tech: $row['tech'],
         );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            "id" => $this->id,
+            "tech" => $this->tech,
+        ];
     }
 }

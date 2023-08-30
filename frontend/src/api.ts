@@ -69,10 +69,16 @@ export type Permission =
     "showAsTechnician" |
     "showAsManager" |
     "showAsAdmin" |
-    "denyBooking";
+    "denyBooking" |
+    "viewAllEvents" |
+    "editAllEvents" |
+    "editShifts" |
+    "joinShifts" |
+    "receiveAutomailer" |
+    "deactivateEvent";
 
 export type UserSpec = {
-    id: string
+    id: number
     firstname: string
     lastname: string
     email: string

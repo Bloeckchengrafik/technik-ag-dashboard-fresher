@@ -181,7 +181,7 @@ SQL
         );
     }
 
-    private static function fromResult(array $result)
+    private static function fromResult(array $result): Event
     {
         return new Event(
             id: $result['id'],
@@ -203,11 +203,15 @@ SQL
 
     public static function byId(int $id): ?Event
     {
-        $result = database()->query('SELECT * FROM Event WHERE id = ?', [$id]);
-        if ($result->rowCount() === 0) {
+        $database = database();
+        $stmt = $database->prepare('SELECT * FROM Event WHERE id = ?');
+        $stmt->bindValue(1, $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() === 0) {
             return null;
         }
-        $row = $result->fetch();
+        $row = $stmt->fetch();
         return self::fromResult($row);
     }
 
@@ -229,5 +233,49 @@ SQL
             $events[] = self::fromResult($row);
         }
         return $events;
+    }
+
+    public function shifts(): array
+    {
+        return Shift::byEventId($this->id);
+    }
+
+    public function save(): void
+    {
+        $db = database();
+        $stmt = $db->prepare(<<<SQL
+UPDATE Event SET
+    organizer_id = ?,
+    type_id = ?,
+    room_id = ?,
+    title = ?,
+    description = ?,
+    needs_consultation = ?,
+    from_time = ?,
+    to_time = ?,
+    construction_from = ?,
+    construction_to = ?,
+    dismantling_from = ?,
+    dismantling_to = ?,
+    disabled = ?
+WHERE id = ?
+SQL
+        );
+        $stmt->execute([
+            $this->organizer_id,
+            $this->type_id,
+            $this->room_id,
+            $this->title,
+            $this->description,
+            $this->needs_consultation ? 1 : 0,
+            $this->from_time,
+            $this->to_time,
+            $this->construction_from,
+            $this->construction_to,
+            $this->dismantling_from,
+            $this->dismantling_to,
+            $this->disabled ? 1 : 0,
+            $this->id,
+        ]);
     }
 }

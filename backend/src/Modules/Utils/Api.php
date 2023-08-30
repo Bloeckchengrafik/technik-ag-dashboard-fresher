@@ -47,3 +47,12 @@ function init(Permission $requiredAuth = null): ?User
 
     return null;
 }
+
+function map(array $array, callable $callback): array
+{
+    $result = [];
+    foreach ($array as $key => $value) {
+        $result[$key] = $callback($value);
+    }
+    return $result;
+}

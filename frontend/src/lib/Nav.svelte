@@ -9,7 +9,6 @@
     let open = false;
     let isOnTop = true;
     let user: UserSpec | null = null;
-    let emailHash = null;
     let userPermission = "Unbekannt";
 
     let jwtPubKey = import.meta.env.VITE_BACKEND_JWT_PUBKEY
@@ -23,11 +22,6 @@
             })
 
             user = verified.payload.user as UserSpec
-
-            let email = user.email.toLowerCase()
-            let hash = await crypto.subtle.digest('SHA-384', new TextEncoder().encode(email))
-            let hashArray = Array.from(new Uint8Array(hash))
-            emailHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 
             if (user.permission.includes("showAsAdmin")) userPermission = "Administrator"
             else if (user.permission.includes("showAsManager")) userPermission = "Manager"
@@ -82,6 +76,15 @@
                         <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                             Dashboard
                         </a>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                            Equipment
+                        </a>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                            Presets
+                        </a>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                            Einstellungen
+                        </a>
                         {#if user.permission.includes("denyBooking") === false}
                             <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                                 Buchen
@@ -98,7 +101,7 @@
                             </button>
                         </a>
                     {:else}
-                        <img src="{backend}v1/profile/avatar/generate.php?id={emailHash}" alt="Avatar"
+                        <img src="{backend}v1/profile/avatar/generate.php?id={user.id}" alt="Avatar"
                              class="w-10 h-10 rounded-full"/>
                         <a href="/profile" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                             <span>{user.firstname} {user.lastname}</span><br/>

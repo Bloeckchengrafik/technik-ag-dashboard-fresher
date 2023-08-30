@@ -15,7 +15,9 @@ class Room
 
     public static function byId(int $id): ?Room
     {
-        $result = database()->query('SELECT * FROM Room WHERE id = ?', [$id]);
+        $db = database();
+        $result = $db->prepare('SELECT * FROM Room WHERE `id` = ?');
+        $result->execute([$id]);
         if ($result->rowCount() === 0) {
             return null;
         }

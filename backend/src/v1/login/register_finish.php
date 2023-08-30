@@ -34,7 +34,7 @@ if (!$works) {
 
 AuthKey::create($user, password_hash($body->password, PASSWORD_DEFAULT), AuthKey::$METHOD_EMAIL, false);
 
-$user->permissions[] = Permission::LOGIN->value;
+$user->permissions[] = Permission::Login->value;
 $user->permissions[] = Permission::ShowAsUser->value;
 $user->save();
 

@@ -12,8 +12,11 @@ const config = {
                 light_muted: "#5e5e5e",
                 dark_muted: "#c9c9c9",
                 primary: "#d16a51",
+                primary_highlight: "#e7765b",
                 secondary: "#d196d2",
+                secondary_highlight: "#e1aee1",
                 tertiary: "#45ab95",
+                tertiary_highlight: "#5cc1a8",
             },
             spacing: {
                 verylarge: "1000rem",

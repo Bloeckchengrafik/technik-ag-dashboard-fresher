@@ -1,8 +1,11 @@
 <?php
 
+use Modules\Email\Automailer;
+use Modules\Email\View;
 use Modules\Event\Event;
 use Modules\Event\EventPreset;
 use Modules\Login\Permission;
+use Modules\Login\User;
 use function Modules\Utils\Api\init;
 use function Modules\Utils\database;
 use function Modules\Utils\Json\error;
@@ -10,7 +13,7 @@ use function Modules\Utils\Json\ok;
 
 include_once '../../Modules/Autoload.php';
 
-$user = init(Permission::LOGIN);
+$user = init(Permission::Login);
 
 $body = json_decode(file_get_contents('php://input'));
 
@@ -43,11 +46,6 @@ if ($statement->rowCount() === 0) {
     error('Captcha falsch');
 }
 
-function parse_js_datetime()
-{
-
-}
-
 try {
     $event = Event::create(
         organizer_id: $user->id,
@@ -75,5 +73,14 @@ try {
 
 $statement = $db->prepare('DELETE FROM `CompletelyAutomatedPublicTuringTestToTellComputersAndHumansApart` WHERE `id` = ?');
 $statement->execute([$body->captcha_id]);
+
+(new Automailer(new View("new_event"), function (User $user) use ($event) {
+    return [
+        "user" => $user,
+        "eventname" => $event->title,
+    ];
+}, "Goe-Tec Automailer: Neue Veranstaltung"))
+    ->filterByPermission(Permission::ReceiveAutomailer)
+    ->send();
 
 ok($event->toArray());

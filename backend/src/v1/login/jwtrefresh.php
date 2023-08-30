@@ -5,5 +5,5 @@ use Modules\Login\Permission;
 use function Modules\Utils\Api\init;
 use function Modules\Utils\Json\ok;
 
-$user = init(Permission::LOGIN);
+$user = init(Permission::Login);
 ok(['jwt' => $user->createJwt()]);

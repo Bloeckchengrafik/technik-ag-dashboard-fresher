@@ -10,7 +10,7 @@ use function Modules\Utils\Api\init;
 use function Modules\Utils\Json\error;
 use function Modules\Utils\Json\ok;
 
-$user = init(Permission::LOGIN);
+$user = init(Permission::Login);
 
 $body = json_decode(file_get_contents('php://input'));
 

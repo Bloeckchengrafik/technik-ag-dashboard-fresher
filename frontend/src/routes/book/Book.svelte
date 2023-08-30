@@ -340,10 +340,6 @@
 <Footer/>
 
 <style lang="postcss">
-    .card {
-        @apply bg-light_fill dark:bg-dark_fill rounded-lg shadow-lg p-5 mt-4;
-    }
-
     #techtoggle:checked ~ div {
         @apply hidden;
     }

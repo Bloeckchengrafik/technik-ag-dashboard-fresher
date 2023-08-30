@@ -26,6 +26,19 @@ class User
         $this->_oldGroups = $groups;
     }
 
+    public static function all(): array
+    {
+        $db = database();
+        $stmt = $db->prepare('SELECT id FROM User');
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        $users = [];
+        foreach ($results as $result) {
+            $users[] = self::fromId($result['id']);
+        }
+        return $users;
+    }
+
     public function save(): void
     {
         $db = database();

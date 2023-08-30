@@ -111,25 +111,6 @@
 
     $: validate(title, room, category, desc, start, end, constStart, constEnd, dismantleStart, dismantleEnd, help, tech, captcha, captcha_id)
 
-    function seedTestData() {
-        title = "Testveranstaltung"
-        room = 1
-        category = 1
-        desc = "Testbeschreibung"
-        start = "2021-02-01T00:00"
-        end = "2021-02-01T01:00"
-        constStart = "2021-01-01T00:00"
-        constEnd = "2021-01-01T01:00"
-        dismantleStart = "2021-03-01T00:00"
-        dismantleEnd = "2021-03-01T01:00"
-        help = false
-        tech = {}
-        captcha = ""
-        captcha_id = "0"
-    }
-
-    seedTestData()
-
     async function send() {
         if (!ok) {
             console.log("%c❌ Validation failed", "color: red")
@@ -173,7 +154,7 @@
         window.location.href = `/#/event/${answer.id}`
     }
 </script>
-<AuthGuard requiredPermission={"showAsUser"} user={user}/>
+<AuthGuard requiredPermission={"login"} user={user}/>
 
 <div class="min-h-full max-w-7xl pt-2 px-1 mx-auto">
     <h1 class="text-3xl break-words mb-5">Technik Buchen</h1>

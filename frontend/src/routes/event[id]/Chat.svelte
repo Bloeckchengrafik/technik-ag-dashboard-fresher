@@ -13,8 +13,6 @@
 
     let textInputData: string = "";
     $: pauseReload = textInputData.length > 0;
-
-    let bottomElement: HTMLElement;
 </script>
 
 <h1 class="text-3xl font-bold mb-4">Chat- und Systemnachrichten</h1>
@@ -25,7 +23,7 @@
     <ChatMessage message={logEntry}/>
 {/each}
 
-<div class="flex flex-col mt-3" bind:this={bottomElement}>
+<div class="flex flex-col mt-3">
     <div class="flex flex-row items-center gap-3">
         <TextInput
                 id="chatbox"
@@ -41,9 +39,12 @@
                     });
                     dispatcher("update");
                     textInputData = "";
-                    // scroll to bottom
                     setTimeout(() => {
-                        bottomElement.scrollIntoView({behavior: "smooth"});
+                        // smooth scroll to bottom
+                        window.scrollTo({
+                            top: document.body.scrollHeight,
+                            behavior: "smooth"
+                        });
                     }, 100);
                 }}
         >

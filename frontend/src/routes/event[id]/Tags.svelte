@@ -8,7 +8,7 @@
     <h2 class="text-xl">{event.organizer.firstname} {event.organizer.lastname}</h2>
     <h1 class="text-4xl font-bold break-words break-normal">{event.title}</h1>
     <div class="mt-2 items-center">
-        <div class="p-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded items-center gap-1 inline-flex">
+        <div class="p-1 mt-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded items-center gap-1 inline-flex">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
                 <rect width="256" height="256" fill="none"/>
                 <circle cx="128" cy="104" r="32" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -20,7 +20,7 @@
             {event.room}
         </div>
 
-        <div class="p-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded inline-flex items-center gap-1">
+        <div class="p-1 mt-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded inline-flex items-center gap-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
                 <rect width="256" height="256" fill="none"/>
                 <line x1="128" y1="40" x2="128" y2="128" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -38,7 +38,7 @@
         </div>
 
         {#if event.needs_consultation}
-            <div class="p-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded inline-flexflex items-center gap-1">
+            <div class="p-1 mt-1 px-2 bg-[#00000020] dark:bg-[#ffffff30] w-fit rounded inline-flexflex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="16" height="16">
                     <rect width="256" height="256" fill="none"/>
                     <path d="M192,120a59.91,59.91,0,0,1,48,24" fill="none" stroke="currentColor"

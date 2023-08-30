@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="px-10 mt-5">
+    <div class="lg:px-10 mt-5">
         <Chat {event} bind:pauseReload on:update={() => dispatch("update")}/>
     </div>
 </div>

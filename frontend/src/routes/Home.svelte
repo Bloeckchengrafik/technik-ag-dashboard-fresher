@@ -3,6 +3,9 @@
     import Hero from "./Hero.svelte";
     import Banner from "./Banner.svelte";
     import Footer from "../lib/Footer.svelte";
+    import {currentTab} from "../stores";
+
+    $currentTab = "home";
 </script>
 <div class="h-full">
     <img src={desk} alt="desk"

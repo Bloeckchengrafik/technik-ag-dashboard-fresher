@@ -6,6 +6,7 @@
     import SubQuestionLink from "../../lib/Forms/SubQuestionLink.svelte";
     import TextInput from "../../lib/Forms/TextInput.svelte";
     import {apiPost, apiToken} from "../../api";
+    import {currentTab} from "../../stores";
 
     let error = ''
     let enabled = false
@@ -21,6 +22,7 @@
     $: enabled = ((!verifying && (!!email) && /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) ||
         (verifying && (!!code) && (!!password) && (!!password2) && (password === password2) && (password.length >= 8))) && !loading
 
+    $currentTab = "login";
 </script>
 <AuthGuard onlyLoggedOut={true}/>
 <AuthLayout title="Anmelden">

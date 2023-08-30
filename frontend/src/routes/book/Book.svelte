@@ -10,6 +10,7 @@
     import CheckInput from "../../lib/Forms/CheckInput.svelte";
     import Captcha from "../../lib/Forms/Captcha.svelte";
     import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
+    import {currentTab} from "../../stores";
 
     let user: UserSpec | null = undefined
     let selectRoomReset: () => void
@@ -153,6 +154,8 @@
 
         window.location.href = `/#/event/${answer.id}`
     }
+
+    $currentTab = "booking";
 </script>
 <AuthGuard requiredPermission={"login"} user={user}/>
 

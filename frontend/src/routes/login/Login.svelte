@@ -8,6 +8,7 @@
     import {apiPost, apiToken} from "../../api";
     import {querystring} from "svelte-spa-router";
     import {help} from "tailwindcss/src/oxide/cli/help";
+    import {currentTab} from "../../stores";
 
     let error = ''
     let enabled = false
@@ -20,6 +21,7 @@
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email) &&
         !loading
 
+    $currentTab = "login";
 </script>
 <AuthGuard onlyLoggedOut={true}/>
 <AuthLayout title="Anmelden">

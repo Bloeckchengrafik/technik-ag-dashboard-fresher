@@ -4,6 +4,7 @@
     import {apiGet} from "../../api";
     import OK from "./OK.svelte";
     import Down from "./Down.svelte";
+    import {currentTab} from "../../stores";
 
     let status: Promise<{
         php: boolean,
@@ -15,6 +16,8 @@
     async function checkStatus() {
         status = Promise.resolve(await apiGet("").then(r => r.json()).then(r => r["systems"]));
     }
+
+    $currentTab = "status";
 </script>
 <Scheduler interval={1000} scheduledFn={checkStatus}/>
 

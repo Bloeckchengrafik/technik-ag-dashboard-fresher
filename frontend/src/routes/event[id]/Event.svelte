@@ -6,6 +6,7 @@
     import {onMount} from "svelte";
     import EventView from "./EventView.svelte";
     import AuthGuard from "../../lib/AuthGuard.svelte";
+    import {currentTab} from "../../stores";
 
     export let params: { id: string };
     let id = parseInt(params.id);
@@ -23,6 +24,8 @@
 
         return () => clearInterval(interval);
     });
+
+    $currentTab = "dash";
 </script>
 <AuthGuard requiredPermission="login" bind:user/>
 <div class="min-h-full mb-4">

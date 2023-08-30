@@ -6,6 +6,7 @@
     import {onMount} from "svelte";
     import Loader from "../../lib/Loader.svelte";
     import EventList from "./EventList.svelte";
+    import {currentTab} from "../../stores";
 
     let user: UserSpec = null;
 
@@ -34,6 +35,8 @@
             clearInterval(interval);
         }
     });
+
+    $currentTab = "dash";
 </script>
 <AuthGuard requiredPermission={"showAsUser"} bind:user/>
 

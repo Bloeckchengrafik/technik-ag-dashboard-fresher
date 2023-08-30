@@ -6,6 +6,7 @@
     import SubQuestionLink from "../../lib/Forms/SubQuestionLink.svelte";
     import {apiPost, apiToken} from "../../api";
     import AuthGuard from "../../lib/AuthGuard.svelte";
+    import {currentTab} from "../../stores";
 
     let goOn = false;
     let goOnSpinner = false;
@@ -215,6 +216,8 @@
 
         window.location.href = "/#/dash"
     }
+
+    $currentTab = "register";
 
 </script>
 <AuthGuard onlyLoggedOut={true} />

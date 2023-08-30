@@ -5,6 +5,7 @@
     import type {UserSpec} from "../api";
     import {apiToken, backend, logout, refreshToken} from "../api";
     import * as jose from "jose";
+    import {currentTab} from "../stores";
 
     let open = false;
     let isOnTop = true;
@@ -59,13 +60,13 @@
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" class:hidden={!open}>
                 <div class="text-sm lg:flex-grow">
                     {#if user == null}
-                        <a href="/login" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/login" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "login"}>
                             Anmelden
                         </a>
-                        <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "register"}>
                             Registrieren
                         </a>
-                        <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4"
+                        <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" class:active={$currentTab === "status"}
                            use:link>
                             Systemstatus
                         </a>
@@ -73,20 +74,20 @@
                             Zum Goethe-Gymnasium
                         </a>
                     {:else}
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "dash"}>
                             Dashboard
                         </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "equipment"}>
                             Equipment
                         </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "presets"}>
                             Presets
                         </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "settings"}>
                             Einstellungen
                         </a>
                         {#if user.permission.includes("denyBooking") === false}
-                            <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                            <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "booking"}>
                                 Buchen
                             </a>
                         {/if}
@@ -137,3 +138,13 @@
 
 <div class="h-20"
 ></div>
+
+<style lang="postcss">
+    .all {
+        @apply border-b-2 border-transparent hover:border-primary transition-colors;
+    }
+
+    .active {
+        @apply border-b-2 border-primary;
+    }
+</style>

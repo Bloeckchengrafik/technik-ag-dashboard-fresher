@@ -1,7 +1,5 @@
 <script lang="ts">
     import {currentTab} from "../../stores";
 
-    $currentTab = "home";
+    $currentTab = "settings";
 </script>
-
-<h1>Page not found</h1>

@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Login\Jwt;
 
+use Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Modules\Login\User;
@@ -25,7 +26,7 @@ function decode($jwt): ?User
             $decoded->user->email,
             $decoded->user->permission
         );
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         // Log error in debug log
         $f = fopen('php://stderr', 'w');
         fwrite($f, $e->getMessage());

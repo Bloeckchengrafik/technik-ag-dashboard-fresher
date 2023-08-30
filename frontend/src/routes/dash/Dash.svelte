@@ -36,11 +36,23 @@
         }
     });
 
+    let needsUpdate = apiGet("v1/profile/student/check_to_be_updated.php").then((res) => res.json()).then((res) => !!res.needs_update);
+
     $currentTab = "dash";
 </script>
 <AuthGuard requiredPermission={"showAsUser"} bind:user/>
 
 <div class="min-h-full max-w-7xl pt-2 px-1 mx-auto">
+    {#await needsUpdate}
+    {:then doesNeedUpdate}
+        {#if doesNeedUpdate}
+            <div class="border-primary border-2 p-2 mb-3 rounded">
+                <h1 class="text-3xl break-words">Ein neues Jahr ist angebrochen! Bitte überprüfe deine Daten <a
+                        href="/#/settings" class="underline">hier.</a></h1>
+            </div>
+        {/if}
+    {/await}
+
     <h1 class="text-3xl break-words mb-5">Aktuelle Events</h1>
 
     {#await q}

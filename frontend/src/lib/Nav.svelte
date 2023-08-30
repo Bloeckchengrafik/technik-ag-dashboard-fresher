@@ -83,7 +83,7 @@
                         <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "presets"}>
                             Presets
                         </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "settings"}>
+                        <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "settings"}>
                             Einstellungen
                         </a>
                         {#if user.permission.includes("denyBooking") === false}
@@ -104,7 +104,7 @@
                     {:else}
                         <img src="{backend}v1/profile/avatar/generate.php?id={user.id}" alt="Avatar"
                              class="w-10 h-10 rounded-full"/>
-                        <a href="/profile" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
+                        <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 mr-4" use:link>
                             <span>{user.firstname} {user.lastname}</span><br/>
                             <span class="text-s opacity-80">{userPermission}</span>
                         </a>

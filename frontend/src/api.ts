@@ -75,7 +75,8 @@ export type Permission =
     "editShifts" |
     "joinShifts" |
     "receiveAutomailer" |
-    "deactivateEvent";
+    "deactivateEvent" |
+    "userAdministration";
 
 export type UserSpec = {
     id: number

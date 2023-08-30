@@ -3,6 +3,7 @@
     export let id: string;
     export let value: string | null = null;
     export let type = "text"
+    export let readonly = false
     let typeStuff = {type}
 
     let active
@@ -17,7 +18,9 @@
             {...activeStuff}
             on:click={() => active = true}
             on:blur={() => active = false}
-            placeholder="{name}"/>
+            placeholder="{name}"
+            readonly={readonly}
+    />
     <label
             for={id}
             {...activeStuff}

@@ -18,4 +18,5 @@ enum Permission: string
     case JoinShifts = "joinShifts";
     case ReceiveAutomailer = "receiveAutomailer";
     case DeactivateEvent = "deactivateEvent";
+    case UserAdmin = "userAdministration";
 }

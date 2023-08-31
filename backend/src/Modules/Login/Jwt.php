@@ -19,13 +19,7 @@ function decode($jwt): ?User
 {
     try {
         $decoded = JWT::decode($jwt, new Key($GLOBALS['config']['jwt']['publickey'], "RS256"));
-        return new User(
-            $decoded->user->id,
-            $decoded->user->firstname,
-            $decoded->user->lastname,
-            $decoded->user->email,
-            $decoded->user->permission
-        );
+        return User::fromId($decoded->user->id);
     } catch (Exception $e) {
         // Log error in debug log
         $f = fopen('php://stderr', 'w');

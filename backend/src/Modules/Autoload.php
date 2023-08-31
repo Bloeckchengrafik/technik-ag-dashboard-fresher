@@ -16,6 +16,7 @@ include_once __DIR__ . '/Utils/Api.php';
 include_once __DIR__ . '/Email/View.php';
 include_once __DIR__ . '/Email/Mailer.php';
 include_once __DIR__ . '/Email/Automailer.php';
+include_once __DIR__ . '/Login/Group.php';
 include_once __DIR__ . '/Login/User.php';
 include_once __DIR__ . '/Login/StudentInfo.php';
 include_once __DIR__ . '/Login/AuthKey.php';

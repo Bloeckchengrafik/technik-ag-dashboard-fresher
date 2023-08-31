@@ -4,13 +4,14 @@
     import type {UserSpec} from "../../api";
     import Footer from "../../lib/Footer.svelte";
     import UserSettings from "./UserSettings.svelte";
-    import AdminSettings from "./AdminSettings.svelte";
+    import AdminSettings from "./UserAdminSettings.svelte";
+    import RolesSettings from "./RolesSettings.svelte";
 
     $currentTab = "settings";
     let user: UserSpec;
     let modalOpen = false;
 
-    let currentPageSection: "user" | "admin" = "user";
+    let currentPageSection: "user" | "admin" | "roles" = "user";
 </script>
 
 <AuthGuard requiredPermission={"showAsUser"} bind:user/>
@@ -27,10 +28,13 @@
         {#if currentPageSection === "user"}
             Benutzereinstellungen
         {:else if currentPageSection === "admin"}
-            Administration
+            Alle Benutzer
+        {:else if currentPageSection === "roles"}
+            Rollen
         {/if}
         {#if user?.permission.includes("userAdministration")}
-            <button class="text-sm dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200" on:click|stopPropagation={() => {
+            <button class="text-sm dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200"
+                    on:click|stopPropagation={() => {
             modalOpen = true;
         }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -41,7 +45,7 @@
                     <button class="rounded-md p-2 absolute bg-light_fill dark:bg-dark_fill shadow-lg text-black dark:text-gray-200 cursor-default"
                             on:click|preventDefault|stopPropagation
                     >
-                        <ul>
+                        <ul class="z-50">
                             <li class="hover:bg-gray-700 dark:hover:bg-opacity-50 hover:bg-opacity-20 p-1 rounded-md">
                                 <button class="w-full text-left" on:click={() => {
                                 currentPageSection = "user";
@@ -60,7 +64,18 @@
                                     modalOpen = false;
                                 }, 1);
                             }}>
-                                    <span class="text-sm">Administration</span>
+                                    <span class="text-sm">Alle Benutzer</span>
+                                </button>
+                            </li>
+
+                            <li class="hover:bg-gray-700 dark:hover:bg-opacity-50 hover:bg-opacity-20 p-1 rounded-md">
+                                <button class="w-full text-left" on:click={() => {
+                                currentPageSection = "roles";
+                                setTimeout(() => {
+                                    modalOpen = false;
+                                }, 1);
+                            }}>
+                                    <span class="text-sm">Rollen</span>
                                 </button>
                             </li>
                         </ul>
@@ -75,6 +90,8 @@
             <UserSettings {user}/>
         {:else if currentPageSection === "admin"}
             <AdminSettings/>
+        {:else if currentPageSection === "roles"}
+            <RolesSettings/>
         {/if}
     {/if}
 

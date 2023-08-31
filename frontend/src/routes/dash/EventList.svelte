@@ -16,7 +16,7 @@
         hour: 'numeric',
         minute: 'numeric'
     });
-    let sorted = events.sort((a, b) => new Date(a.from_time.replace(" ", "T")).getTime() - new Date(b.from_time.replace(" ", "T")).getTime());
+    let sorted = events.sort((a, b) => b.id - a.id);
 
     let firstEventInPast = sorted.find(event => new Date(event.from_time.replace(" ", "T")).getTime() < new Date().getTime());
 </script>

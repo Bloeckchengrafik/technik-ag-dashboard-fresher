@@ -10,7 +10,7 @@
     $: activeStuff = (active || value?.length>0) ? {"data-te-input-state-active": 1} : {};
 </script>
 
-<div class="relative mb-6 w-full" {...activeStuff}>
+<div class="relative mb-6 w-full" {...activeStuff} class:pointer-events-none={readonly}>
     <input  {...typeStuff}
             class="border-b-2 border-b-gray-400 dark:border-b-neutral-700 focus:border-b-primary peer-focus:border-primary peer-data-[te-input-state-active]:border-primary peer block min-h-[auto] w-full border-0 bg-transparent px-0 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
             id={id}

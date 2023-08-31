@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "fuse.js": "^6.6.2",
     "jose": "^4.14.4",
     "svelte-spa-router": "^3.3.0",
     "tw-elements": "^1.0.0-beta3",

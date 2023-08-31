@@ -28,7 +28,7 @@
     let nextAction: "name" | "verify" | "finish" | "attachStudentStuff" = "name"
     let currentAction: "email" | "name" | "verify" | "finish" = "email"
 
-    $: error = currentAction.substring(0, 0) // When the user switches to the next action, the error should be reset
+    $: error = currentAction.substring(0, 0) // When the user[id] switches to the next action, the error should be reset
 
     let userDataCache = {}
 
@@ -162,7 +162,7 @@
                 email: email,
             }).then(r => r.json())
         } else {
-            // Register user
+            // Register user[id]
             let result = await apiPost("v1/login/register.php", {
                 ...userDataCache,
             }).then(r => r.json())

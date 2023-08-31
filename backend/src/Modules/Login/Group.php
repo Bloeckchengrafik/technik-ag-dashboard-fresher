@@ -143,6 +143,21 @@ class Group
         $this->oldUsers = $this->users;
     }
 
+    public function initialResolve(): void {
+        // Fill in permissions and users
+        $pdo = database();
+        $stmt = $pdo->prepare('SELECT `name` FROM `Permission` WHERE `id` IN (SELECT `permission_id` FROM `GroupPermission` WHERE `group_id` = :group_id)');
+        $stmt->execute([':group_id' => $this->id]);
+        $this->permissions = map($stmt->fetchAll(PDO::FETCH_COLUMN), fn($permission) => Permission::from($permission)->value);
+
+        $stmt = $pdo->prepare('SELECT User.id FROM `User` INNER JOIN `UserGroup` ON User.id = UserGroup.user_id WHERE UserGroup.group_id = :group_id');
+        $stmt->execute([':group_id' => $this->id]);
+        $this->users = map($stmt->fetchAll(PDO::FETCH_ASSOC), fn($user) => $user['id']);
+
+        $this->oldPermissions = $this->permissions;
+        $this->oldUsers = $this->users;
+    }
+
     public static function all(): array
     {
         $pdo = database();
@@ -161,5 +176,26 @@ class Group
         }
         $group = $stmt->fetch(PDO::FETCH_ASSOC);
         return new Group($group['id'], $group['name'], [], []);
+    }
+
+    public static function create(string $name): Group
+    {
+        $pdo = database();
+        $stmt = $pdo->prepare('INSERT INTO `Group` (`name`) VALUES (:name)');
+        $stmt->execute([':name' => $name]);
+        return new Group($pdo->lastInsertId(), $name, [], []);
+    }
+
+    public function delete(): void
+    {
+        $pdo = database();
+        $stmt = $pdo->prepare('DELETE FROM `UserGroup` WHERE `group_id` = :id');
+        $stmt->execute([':id' => $this->id]);
+
+        $stmt = $pdo->prepare('DELETE FROM `GroupPermission` WHERE `group_id` = :id');
+        $stmt->execute([':id' => $this->id]);
+
+        $stmt = $pdo->prepare('DELETE FROM `Group` WHERE `id` = :id');
+        $stmt->execute([':id' => $this->id]);
     }
 }

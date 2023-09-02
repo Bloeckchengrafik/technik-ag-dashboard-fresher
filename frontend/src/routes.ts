@@ -10,6 +10,7 @@ import Dash from "./routes/dash/Dash.svelte";
 import Settings from "./routes/settings/Settings.svelte";
 import Group from "./routes/group[id]/Group.svelte";
 import User from "./routes/user[id]/User.svelte";
+import Equipment from "./routes/equipment/Equipment.svelte";
 
 export const routes = {
     "/": Home,
@@ -23,5 +24,6 @@ export const routes = {
     "/settings": Settings,
     "/grp/:id": Group,
     "/profile/:id": User,
+    "/equipment": Equipment,
     "*": NotFound
 }

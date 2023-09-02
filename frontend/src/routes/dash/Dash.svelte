@@ -19,7 +19,7 @@
         if (user.permission.includes("viewAllEvents")) {
             return apiGet("v1/event/shortList.php").then((res) => res.json());
         } else {
-            return fetch("v1/event/shortListByOrganizer.php").then((res) => res.json());
+            return apiGet("v1/event/shortListByOrganizer.php").then((res) => res.json());
         }
     }
 
@@ -40,7 +40,7 @@
 
     $currentTab = "dash";
 </script>
-<AuthGuard requiredPermission={"showAsUser"} bind:user/>
+<AuthGuard requiredPermission={"login"} bind:user/>
 
 <div class="min-h-full max-w-7xl pt-2 px-1 mx-auto">
     {#await needsUpdate}

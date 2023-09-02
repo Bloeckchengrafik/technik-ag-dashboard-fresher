@@ -227,9 +227,13 @@ SQL
 
     public static function byOrganizerId(int $organizer_id): array
     {
-        $result = database()->query('SELECT * FROM Event WHERE organizer_id = ?', [$organizer_id]);
+        $database = database();
+        $stmt = $database->prepare('SELECT * FROM Event WHERE organizer_id = ?');
+        $stmt->bindValue(1, $organizer_id);
+        $stmt->execute();
+
         $events = [];
-        foreach ($result->fetchAll() as $row) {
+        foreach ($stmt->fetchAll() as $row) {
             $events[] = self::fromResult($row);
         }
         return $events;

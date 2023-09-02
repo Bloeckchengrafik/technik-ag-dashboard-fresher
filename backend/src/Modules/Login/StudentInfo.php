@@ -25,13 +25,12 @@ class StudentInfo
         $lastUpdated = strtotime($this->last_updated);
         $currentYear = date('Y');
         $currentMonth = date('m');
-        $currentDay = date('d');
         $currentYear = $currentMonth >= 8 ? $currentYear : $currentYear - 1;
         $lastUpdatedYear = date('Y', $lastUpdated);
         $lastUpdatedMonth = date('m', $lastUpdated);
-        $lastUpdatedDay = date('d', $lastUpdated);
         $lastUpdatedYear = $lastUpdatedMonth >= 8 ? $lastUpdatedYear : $lastUpdatedYear - 1;
-        return $lastUpdatedYear < $currentYear || ($lastUpdatedYear === $currentYear && $lastUpdatedMonth < $currentMonth) || ($lastUpdatedYear === $currentYear && $lastUpdatedMonth === $currentMonth && $lastUpdatedDay < $currentDay);
+
+        return $currentYear != $lastUpdatedYear;
     }
 
     public function save(): void

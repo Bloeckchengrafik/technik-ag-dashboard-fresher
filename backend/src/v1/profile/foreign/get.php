@@ -19,4 +19,4 @@ if ($user == null) {
     error("User not found");
 }
 
-ok($user->toArray());
+ok($user->toArrayLocal());

@@ -22,6 +22,8 @@
 
         return r
     })
+
+    let stats = apiGet("v1/profile/foreign/stats.php?id=" + params.id).then(r => r.json())
 </script>
 
 <AuthGuard requiredPermission="userAdministration"/>
@@ -90,5 +92,33 @@
             />
         </div>
     {/await}
+
+    <div class="card mb-4">
+        <h1 class="text-3xl break-words mb-5">
+            Statistiken
+        </h1>
+        {#await stats}
+            <p>Loading...</p>
+        {:then statistics}
+            <!--
+             example json: {"own_events":8,"participated_events":1,"participated_time":"00h 01m"}
+             -> something nice with tailwind
+             -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="p-4 bg-light dark:bg-dark shadow rounded-lg">
+                    <h2 class="text-xl">Eigene Events</h2>
+                    <p class="text-2xl">{statistics.own_events}</p>
+                </div>
+                <div class="p-4 bg-light dark:bg-dark shadow rounded-lg">
+                    <h2 class="text-xl">Teilgenommene Events</h2>
+                    <p class="text-2xl">{statistics.participated_events}</p>
+                </div>
+                <div class="p-4 bg-light dark:bg-dark shadow rounded-lg">
+                    <h2 class="text-xl">Teilgenommene Zeit</h2>
+                    <p class="text-2xl">{statistics.participated_time}</p>
+                </div>
+            </div>
+        {/await}
+    </div>
 </div>
 <Footer/>

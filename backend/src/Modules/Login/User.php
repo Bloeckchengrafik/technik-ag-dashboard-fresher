@@ -99,6 +99,18 @@ class User
         ];
     }
 
+    public function toArrayLocal(): array
+    {
+        return [
+            'id' => $this->id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'permission' => $this->permissions,
+            'groups' => $this->groups,
+        ];
+    }
+
     public function createJwt(): string
     {
         return Jwt\encode($this);
@@ -176,6 +188,9 @@ class User
     {
         $added = array_diff($this->permissions, $this->_oldPermissions);
         $removed = array_diff($this->_oldPermissions, $this->permissions);
+
+        error_log(print_r($added, true));
+        error_log(print_r($removed, true));
 
         foreach ($added as $permission) {
             $db = database();

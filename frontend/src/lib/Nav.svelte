@@ -77,7 +77,7 @@
                         <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "dash"}>
                             Dashboard
                         </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "equipment"}>
+                        <a href="/equipment" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "equipment"}>
                             Equipment
                         </a>
                         <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "presets"}>

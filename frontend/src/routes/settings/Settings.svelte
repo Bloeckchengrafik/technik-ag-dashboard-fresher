@@ -14,7 +14,7 @@
     let currentPageSection: "user" | "admin" | "roles" = "user";
 </script>
 
-<AuthGuard requiredPermission={"showAsUser"} bind:user/>
+<AuthGuard requiredPermission={"login"} bind:user/>
 
 <svelte:body on:click={(e) => {
     if (modalOpen) {

@@ -19,4 +19,5 @@ enum Permission: string
     case ReceiveAutomailer = "receiveAutomailer";
     case DeactivateEvent = "deactivateEvent";
     case UserAdmin = "userAdministration";
+    case EquipmentView = "equipmentView";
 }

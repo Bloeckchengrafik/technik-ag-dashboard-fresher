@@ -21,3 +21,7 @@ include_once __DIR__ . '/Login/User.php';
 include_once __DIR__ . '/Login/StudentInfo.php';
 include_once __DIR__ . '/Login/AuthKey.php';
 include_once __DIR__ . '/Login/Jwt.php';
+include_once __DIR__ . '/Equipment/Equipment.php';
+include_once __DIR__ . '/Equipment/EquipmentCategorizer.php';
+include_once __DIR__ . '/Equipment/CategoryCategorizer.php';
+include_once __DIR__ . '/Equipment/NameCategorizer.php';

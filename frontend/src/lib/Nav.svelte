@@ -60,13 +60,16 @@
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto" class:hidden={!open}>
                 <div class="text-sm lg:flex-grow">
                     {#if user == null}
-                        <a href="/login" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "login"}>
+                        <a href="/login" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                           class:active={$currentTab === "login"}>
                             Anmelden
                         </a>
-                        <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "register"}>
+                        <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                           class:active={$currentTab === "register"}>
                             Registrieren
                         </a>
-                        <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" class:active={$currentTab === "status"}
+                        <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all"
+                           class:active={$currentTab === "status"}
                            use:link>
                             Systemstatus
                         </a>
@@ -74,20 +77,27 @@
                             Zum Goethe-Gymnasium
                         </a>
                     {:else}
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "dash"}>
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                           class:active={$currentTab === "dash"}>
                             Dashboard
                         </a>
-                        <a href="/equipment" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "equipment"}>
-                            Equipment
-                        </a>
-                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "presets"}>
+                        {#if user.permission.includes("equipmentView")}
+                            <a href="/equipment" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                               class:active={$currentTab === "equipment"}>
+                                Equipment
+                            </a>
+                        {/if}
+                        <a href="/dash" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                           class:active={$currentTab === "presets"}>
                             Presets
                         </a>
-                        <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "settings"}>
+                        <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                           class:active={$currentTab === "settings"}>
                             Einstellungen
                         </a>
                         {#if user.permission.includes("denyBooking") === false}
-                            <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link class:active={$currentTab === "booking"}>
+                            <a href="/book" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                               class:active={$currentTab === "booking"}>
                                 Buchen
                             </a>
                         {/if}
@@ -113,7 +123,8 @@
                                on:click|preventDefault={refreshToken}>
                                 <button
                                         class="inline-block px-4 lg:py-2 text-sm font-bold leading-none bg-light_fill text-black dark:text-white dark:bg-dark_fill border border-transparent rounded-l hover:border-transparent hover:opacity-75 mt-4 lg:mt-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                         fill="currentColor"
                                          viewBox="0 0 256 256">
                                         <path d="M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z"></path>
                                     </svg>
@@ -122,7 +133,8 @@
                                    on:click|preventDefault={logout}>
                             <button
                                     class="inline-block px-4 lg:py-2 text-sm font-bold leading-none bg-light_fill text-black dark:text-white dark:bg-dark_fill border border-transparent lg:border-l-light lg:dark:border-l-dark rounded-r hover:border-transparent hover:opacity-75 mt-4 lg:mt-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                     fill="currentColor"
                                      viewBox="0 0 256 256">
                                     <path d="M122,128V48a6,6,0,0,1,12,0v80a6,6,0,0,1-12,0Zm57.28-77A6,6,0,0,0,172.72,61C196.41,76.47,210,100.88,210,128a82,82,0,0,1-164,0c0-27.12,13.59-51.53,37.28-67A6,6,0,0,0,76.72,51C49.57,68.68,34,96.75,34,128a94,94,0,0,0,188,0C222,96.75,206.43,68.68,179.28,51Z"></path>
                                 </svg>

@@ -22,4 +22,6 @@ enum Permission: string
     case EquipmentView = "equipmentView";
     case EquipmentDelete = "equipmentDelete";
     case EquipmentChange = "equipmentChange";
+    case ViewPresets = "viewPresets";
+    case EditPresets = "editPresets";
 }

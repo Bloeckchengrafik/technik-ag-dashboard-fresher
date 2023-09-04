@@ -11,6 +11,7 @@ import Settings from "./routes/settings/Settings.svelte";
 import Group from "./routes/group[id]/Group.svelte";
 import User from "./routes/user[id]/User.svelte";
 import Equipment from "./routes/equipment/Equipment.svelte";
+import Presets from "./routes/presets/Presets.svelte";
 
 export const routes = {
     "/": Home,
@@ -25,5 +26,6 @@ export const routes = {
     "/grp/:id": Group,
     "/profile/:id": User,
     "/equipment": Equipment,
+    "/presets": Presets,
     "*": NotFound
 }

@@ -79,7 +79,9 @@ export type Permission =
     "userAdministration" |
     "equipmentView" |
     "equipmentDelete" |
-    "equipmentChange";
+    "equipmentChange" |
+    "viewPresets" |
+    "editPresets";
 
 export type UserSpec = {
     id: number

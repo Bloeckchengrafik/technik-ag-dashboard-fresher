@@ -9,7 +9,7 @@ include_once '../../Modules/Autoload.php';
 init();
 
 $db = database();
-$stmt = $db->prepare('SELECT * FROM Preset');
+$stmt = $db->prepare('SELECT Preset.id, Preset.tech, count(distinct event_id) as popularity FROM Preset LEFT JOIN EventPreset EP on Preset.id = EP.preset_id GROUP BY Preset.id');
 $stmt->execute();
 $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ok($rooms);

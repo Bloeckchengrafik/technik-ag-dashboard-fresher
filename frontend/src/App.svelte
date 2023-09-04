@@ -3,7 +3,8 @@
     import {routes} from "./routes";
     import Nav from "./lib/Nav.svelte";
     import {onMount} from "svelte";
-    import {refreshToken} from "./api";
+    import {refreshToken} from "./api"
+    import "@sweetalert2/theme-dark/dark.css";
 
     onMount(() => {
         let int = setInterval(async () => { await refreshToken(); }, 30000);

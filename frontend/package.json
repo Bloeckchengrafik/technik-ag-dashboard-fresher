@@ -26,10 +26,12 @@
     "zod": "^3.22.1"
   },
   "dependencies": {
+    "@sweetalert2/theme-dark": "^5.0.15",
     "@tailwindcss/typography": "^0.5.9",
     "fuse.js": "^6.6.2",
     "jose": "^4.14.4",
     "svelte-spa-router": "^3.3.0",
+    "sweetalert2": "^11.7.27",
     "tw-elements": "^1.0.0-beta3",
     "url-slug": "^4.0.1"
   }

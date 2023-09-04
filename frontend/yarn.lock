@@ -208,6 +208,11 @@
     svelte-hmr "^0.15.2"
     vitefu "^0.2.4"
 
+"@sweetalert2/theme-dark@^5.0.15":
+  version "5.0.15"
+  resolved "https://registry.yarnpkg.com/@sweetalert2/theme-dark/-/theme-dark-5.0.15.tgz#2b8f072b4efe98db1f7dbe95d14bbede936a8d47"
+  integrity sha512-g1QCwQVOkiAz5hIEBOIvvu0580lubu4KuQlod+48QetYzGIEXNlHEH36QihCDnGVgE6vx48iO48w9q0WrZWyHQ==
+
 "@tailwindcss/language-server@^0.0.13":
   version "0.0.13"
   resolved "https://registry.yarnpkg.com/@tailwindcss/language-server/-/language-server-0.0.13.tgz#918d72bcc672c8c19885420f72bd5d92c3fe2283"
@@ -1190,6 +1195,11 @@ svelte@^4.0.3:
     locate-character "^3.0.0"
     magic-string "^0.30.0"
     periscopic "^3.1.0"
+
+sweetalert2@^11.7.27:
+  version "11.7.27"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-11.7.27.tgz#de19294e1b5ae7991de27bb4ae34aff3570aaa0e"
+  integrity sha512-QbRXGQn1sb7HEhzA/K2xtWIwQHh/qkSbb1w6jYcTql2xy17876lTREEt1D4X6Q0x2wHtfUjKJ+Cb8IVkRoq7DQ==
 
 tailwindcss@3.3.0:
   version "3.3.0"

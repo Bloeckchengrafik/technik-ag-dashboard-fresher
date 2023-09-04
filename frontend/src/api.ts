@@ -77,7 +77,9 @@ export type Permission =
     "receiveAutomailer" |
     "deactivateEvent" |
     "userAdministration" |
-    "equipmentView";
+    "equipmentView" |
+    "equipmentDelete" |
+    "equipmentChange";
 
 export type UserSpec = {
     id: number
@@ -88,3 +90,18 @@ export type UserSpec = {
     permission: Permission[]
 }
 
+export type EquipmentSpec = {
+    id: number
+    count: number
+    name: string
+    category_id: number
+    category_name: string
+    location_id: number
+    location_name: string
+    manufacturer_id: number
+    manufacturer_name: string
+}
+
+export type SortedEquipmentSpec = {
+    [key: string]: EquipmentSpec[]
+}

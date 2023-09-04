@@ -24,6 +24,7 @@
     })
 
     let stats = apiGet("v1/profile/foreign/stats.php?id=" + params.id).then(r => r.json())
+    let spinner = false
 </script>
 
 <AuthGuard requiredPermission="userAdministration"/>
@@ -63,6 +64,7 @@
             {/each}
 
             <SubmitBtn name="Speichern"
+                       {spinner}
                        on:click={() => {
                            /** @type {Array<String>} */
                            let permissionNames = []
@@ -88,6 +90,12 @@
                                permissions: permissionNames,
                                groups: roleNames
                            })
+
+                           // spinner for visual feedback
+                            spinner = true
+                            setTimeout(() => {
+                                spinner = false
+                            }, 300)
                        }}
             />
         </div>

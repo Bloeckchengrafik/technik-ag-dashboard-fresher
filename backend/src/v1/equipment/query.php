@@ -2,6 +2,8 @@
 
 use Modules\Equipment\CategoryCategorizer;
 use Modules\Equipment\Equipment;
+use Modules\Equipment\LocationCategorizer;
+use Modules\Equipment\ManufacturerCategorizer;
 use Modules\Equipment\NameCategorizer;
 use Modules\Login\Permission;
 use function Modules\Utils\Api\init;
@@ -17,6 +19,10 @@ $equipment = Equipment::all();
 $categorizer = new CategoryCategorizer();
 if ($tab === 1) {
     $categorizer = new NameCategorizer();
+} else if ($tab === 2) {
+    $categorizer = new LocationCategorizer();
+} else if ($tab === 3) {
+    $categorizer = new ManufacturerCategorizer();
 }
 
 $equipment = $categorizer->categorize($equipment);

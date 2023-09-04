@@ -15,6 +15,8 @@
         })
         return r
     })
+
+    let spinner = false
 </script>
 
 <AuthGuard requiredPermission="userAdministration"/>
@@ -40,6 +42,7 @@
             {/each}
 
             <SubmitBtn name="Speichern"
+                       {spinner}
                        on:click={() => {
                            /** @type {Array<String>} */
                            let permissionNames = []
@@ -54,9 +57,15 @@
                            apiPost("v1/permissions/groups/update.php?id=" + params.id, {
                                permissions: permissionNames
                            })
+
+                           // spinner for visual feedback (300ms)
+                            spinner = true
+                            setTimeout(() => {
+                                spinner = false
+                            }, 300)
                        }}
             />
         </div>
     {/await}
 </div>
-<Footer />
+<Footer/>

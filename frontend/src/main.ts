@@ -2,7 +2,7 @@ import "./app.postcss";
 import App from "./App.svelte";
 
 function doDarkMode() {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.documentElement.classList.add('dark')
     } else {
         document.documentElement.classList.remove('dark')

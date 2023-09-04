@@ -25,3 +25,5 @@ include_once __DIR__ . '/Equipment/Equipment.php';
 include_once __DIR__ . '/Equipment/EquipmentCategorizer.php';
 include_once __DIR__ . '/Equipment/CategoryCategorizer.php';
 include_once __DIR__ . '/Equipment/NameCategorizer.php';
+include_once __DIR__ . '/Equipment/LocationCategorizer.php';
+include_once __DIR__ . '/Equipment/ManufacturerCategorizer.php';

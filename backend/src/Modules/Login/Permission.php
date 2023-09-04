@@ -20,4 +20,6 @@ enum Permission: string
     case DeactivateEvent = "deactivateEvent";
     case UserAdmin = "userAdministration";
     case EquipmentView = "equipmentView";
+    case EquipmentDelete = "equipmentDelete";
+    case EquipmentChange = "equipmentChange";
 }

@@ -20,6 +20,9 @@ const config = {
             },
             spacing: {
                 verylarge: "1000rem",
+            },
+            fontFamily: {
+                sans: ["Open Runde", "sans-serif"],
             }
         },
     },

@@ -108,9 +108,11 @@ CREATE TABLE IF NOT EXISTS QuizQuestion
 CREATE TABLE IF NOT EXISTS QuizAnswer
 (
     id            INTEGER AUTO_INCREMENT,
+    quiz_id       INTEGER NOT NULL,
     user_id       INTEGER NOT NULL,
     overall_score INTEGER NOT NULL,
     FOREIGN KEY (user_id) REFERENCES User (id),
+    FOREIGN KEY (quiz_id) REFERENCES Quiz (id),
     PRIMARY KEY (id, user_id)
 );
 

@@ -10,5 +10,6 @@ export let currentTab: Writable<
     "settings" |
     "login" |
     "register" |
-    "status"
+    "status" |
+    "quiz"
 > = writable('home');

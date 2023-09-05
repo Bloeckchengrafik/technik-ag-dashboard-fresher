@@ -4,6 +4,9 @@
     import {apiGet, apiPost} from "../../api";
     import Swal from "sweetalert2";
     import Footer from "../../lib/Footer.svelte";
+    import {currentTab} from "../../stores";
+
+    $currentTab = "presets";
 
     let user: UserSpec;
     let allPresets: Promise<[{

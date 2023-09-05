@@ -93,6 +93,12 @@
                                 Presets
                             </a>
                         {/if}
+                        {#if user.permission.includes("doQuiz")}
+                            <a href="/survey" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
+                               class:active={$currentTab === "quiz"}>
+                                Umfragen
+                            </a>
+                        {/if}
                         <a href="/settings" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
                            class:active={$currentTab === "settings"}>
                             Einstellungen

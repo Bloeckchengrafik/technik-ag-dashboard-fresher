@@ -6,8 +6,10 @@
     import EquipmentView from "./EquipmentView.svelte";
     import EquipmentEditModal from "./EquipmentEditModal.svelte";
     import Footer from "../../lib/Footer.svelte";
+    import {currentTab} from "../../stores";
 
     let tab = 0;
+    $currentTab = "equipment";
 
     let jsonPromise: Promise<SortedEquipmentSpec>;
     $: jsonPromise = apiGet('v1/equipment/query.php?tab=' + tab).then(res => res.json());

@@ -81,7 +81,10 @@ export type Permission =
     "equipmentDelete" |
     "equipmentChange" |
     "viewPresets" |
-    "editPresets";
+    "editPresets" |
+    "doQuiz" |
+    "viewQuizResults" |
+    "uploadQuiz";
 
 export type UserSpec = {
     id: number

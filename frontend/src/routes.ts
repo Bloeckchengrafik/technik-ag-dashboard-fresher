@@ -12,6 +12,8 @@ import Group from "./routes/group[id]/Group.svelte";
 import User from "./routes/user[id]/User.svelte";
 import Equipment from "./routes/equipment/Equipment.svelte";
 import Presets from "./routes/presets/Presets.svelte";
+import Survey from "./routes/survey/Survey.svelte";
+import SurveyFillOut from "./routes/survey[id]/SurveyFillOut.svelte";
 
 export const routes = {
     "/": Home,
@@ -27,5 +29,7 @@ export const routes = {
     "/profile/:id": User,
     "/equipment": Equipment,
     "/presets": Presets,
+    "/survey": Survey,
+    "/survey/:id": SurveyFillOut,
     "*": NotFound
 }

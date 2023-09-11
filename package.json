@@ -5,7 +5,7 @@
   "scripts": {
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend/src && php -S localhost:8000",
-    "cloc": "cloc frontend/src backend/cli.php backend/sql backend/src/index.php backend/src/Modules backend/src/v1 frontend/tailwind.config.js",
+    "cloc": "cloc frontend/src backend/cli.php backend/sql backend/src/index.php backend/src/Modules backend/src/v1 frontend/tailwind.config.js build_deps",
     "build": "node build_deps/buildscript.js"
   },
   "author": "",

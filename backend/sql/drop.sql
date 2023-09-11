@@ -1,3 +1,4 @@
+drop table if exists Message;
 drop table if exists AuthKey;
 drop table if exists Email;
 drop table if exists Equipment;

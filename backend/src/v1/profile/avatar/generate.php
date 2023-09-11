@@ -1,6 +1,4 @@
 <?php
-include_once '../../../Modules/Autoload.php';
-
 $id = $_GET['id'];
 $hash = hash('md5', $id);
 $hash_number = hexdec(substr($hash, 0, 6));

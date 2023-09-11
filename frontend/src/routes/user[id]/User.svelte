@@ -4,6 +4,7 @@
     import CheckInput from "../../lib/Forms/CheckInput.svelte";
     import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
     import Footer from "../../lib/Footer.svelte";
+    import Swal from "sweetalert2";
 
     export let params;
 
@@ -23,8 +24,18 @@
         return r
     })
 
+    let quizzes = apiGet("v1/quiz/foreign.php?id=" + params.id).then(r => r.json())
+
     let stats = apiGet("v1/profile/foreign/stats.php?id=" + params.id).then(r => r.json())
     let spinner = false
+
+    let scoreString = {
+        '-2': 'Sehr schlecht',
+        '-1': 'Schlecht',
+        '0': 'Neutral',
+        '1': 'Gut',
+        '2': 'Sehr gut',
+    }
 </script>
 
 <AuthGuard requiredPermission="userAdministration"/>
@@ -126,6 +137,38 @@
                     <p class="text-2xl">{statistics.participated_time}</p>
                 </div>
             </div>
+        {/await}
+    </div>
+    <div class="card mb-4">
+        <h1 class="text-3xl break-words mb-5 flex flex-row justify-between">
+            Umfragen
+            <button class="rounded text-lg bg-primary text-white px-4 py-2 hover:bg-primary_highlight transition-colors"
+                    on:click={() => {
+                apiPost("v1/message/add.php", {
+                    user_id: parseInt(params.id),
+                    message: "Zeit eine Umfrage zu beantworten!",
+                }).then(()=> {
+                    Swal.fire({
+                        title: 'Erfolgreich',
+                        text: 'Die Umfrage wurde erfolgreich versendet',
+                        icon: 'success',
+                        confirmButtonText: 'Ok'
+                    })
+                })
+            }}>Zur Umfrage Auffordern
+            </button>
+        </h1>
+        {#await quizzes}
+            <p>Loading...</p>
+        {:then quizzes}
+            <ul>
+                {#each quizzes as quiz}
+                    <li>
+                        <h3 class="text-xl inline">{quiz.quiz_name}</h3> <span
+                            class="text-neutral-300">({scoreString[quiz.score]})</span>
+                    </li>
+                {/each}
+            </ul>
         {/await}
     </div>
 </div>

@@ -245,3 +245,11 @@ CREATE TABLE IF NOT EXISTS CompletelyAutomatedPublicTuringTestToTellComputersAnd
     answer  TEXT     NOT NULL,
     timeout DATETIME NOT NULL DEFAULT TIMESTAMPADD(HOUR, 1, NOW())
 );
+
+CREATE TABLE IF NOT EXISTS Message
+(
+    id      INTEGER PRIMARY KEY AUTO_INCREMENT,
+    user_id INTEGER NOT NULL,
+    message TEXT    NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User (id)
+);

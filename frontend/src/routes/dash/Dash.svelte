@@ -7,6 +7,7 @@
     import Loader from "../../lib/Loader.svelte";
     import EventList from "./EventList.svelte";
     import {currentTab} from "../../stores";
+    import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
 
     let user: UserSpec = null;
 
@@ -37,6 +38,7 @@
     });
 
     let needsUpdate = apiGet("v1/profile/student/check_to_be_updated.php").then((res) => res.json()).then((res) => !!res.needs_update);
+    let messages = apiGet("v1/message/get.php").then((res) => res.json());
 
     $currentTab = "dash";
 </script>
@@ -49,6 +51,28 @@
             <div class="border-primary border-2 p-2 mb-3 rounded">
                 <h1 class="text-3xl break-words">Ein neues Jahr ist angebrochen! Bitte überprüfe deine Daten <a
                         href="/#/settings" class="underline">hier.</a></h1>
+            </div>
+        {/if}
+    {/await}
+
+    {#await messages}
+    {:then msg}
+        {#if msg.length > 0}
+            <div class="border-primary border-2 p-2 mb-3 rounded flex flex-row justify-between">
+                <h1 class="text-2xl break-words">
+                    Du hast neue Nachrichten: <br />
+                    {#each msg as message}
+                        - {message.message} <br />
+                    {/each}
+                </h1>
+
+                <div class="flex flex-col justify-center items-center">
+                    <SubmitBtn on:click={() => {
+                        apiGet("v1/message/drop.php").then(() => {
+                            messages = apiGet("v1/message/get.php").then((res) => res.json());
+                        });
+                    }} name="Ok"></SubmitBtn>
+                </div>
             </div>
         {/if}
     {/await}

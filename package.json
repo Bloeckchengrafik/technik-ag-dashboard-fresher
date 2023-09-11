@@ -5,8 +5,21 @@
   "scripts": {
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend/src && php -S localhost:8000",
-    "cloc": "cloc frontend/src backend/cli.php backend/sql backend/src/index.php backend/src/Modules backend/src/v1 frontend/tailwind.config.js"
+    "cloc": "cloc frontend/src backend/cli.php backend/sql backend/src/index.php backend/src/Modules backend/src/v1 frontend/tailwind.config.js",
+    "build": "node build_deps/buildscript.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "clui": "^0.3.6",
+    "command-exists": "^1.2.9",
+    "keypair": "^1.0.4"
+  },
+  "type": "module"
 }

@@ -2,3 +2,6 @@
 backend/src/vendor
 backend/src/Modules/Config/Config.php
 node_modules
+/config.json
+/install_data
+/build

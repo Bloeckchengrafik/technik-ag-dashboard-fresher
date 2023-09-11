@@ -1,0 +1,22 @@
+{
+  "database": {
+    "host": "***",
+    "port": "***",
+    "user": "***",
+    "password": "***",
+    "database": "***"
+  },
+  "mail": {
+    "host": "***",
+    "port": "***",
+    "user": "***",
+    "password": "***",
+    "from": "***",
+    "fromName": "GoeTec Automailer"
+  },
+  "jwt": {
+    "issuer": "goe-tec.goethe-projektserver.de",
+    "audience": "goe-tec.goethe-projektserver.de",
+    "expiration": 86400
+  }
+}

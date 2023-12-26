@@ -1,23 +1,27 @@
 <script lang="ts">
     import {apiToken} from "../api";
     import type {UserSpec, Permission} from "../api";
-    import * as jose from 'jose'
 
     export let requiredPermission: Permission | null = null;
     export let user: UserSpec | null = null;
     export let onlyLoggedOut: boolean = false;
     export let doRedirect = true;
 
-    let jwtPubKey = import.meta.env.VITE_BACKEND_JWT_PUBKEY
     let jwt = $apiToken;
 
     (async () => {
-        let pubKey = await jose.importSPKI(jwtPubKey, 'RS256')
-
         try {
-            let verified = await jose.jwtVerify(jwt, pubKey, {
-                algorithms: ['RS256']
-            })
+            let payload = atob(jwt.split('.')[1])
+            let verified = JSON.parse(payload)
+
+            let exp = verified.exp
+            if (exp < Date.now() / 1000) {
+                // JWT is expired
+                console.log("%c⚠️ %c JWT is expired", "font-weight: bold", "color: red; font-weight: normal")
+                apiToken.set(null)
+                if (doRedirect) window.location.href = '/#/login?redirect=' + encodeURIComponent(window.location.hash)
+                return
+            }
 
             if (onlyLoggedOut) {
                 // We're logged in, but we're not supposed to be
@@ -26,7 +30,7 @@
                 return
             }
 
-            user = verified.payload.user as UserSpec
+            user = verified.user as UserSpec
 
             console.info(`
 %c🎓 %c Logged in as ${user.firstname} ${user.lastname}

@@ -29,6 +29,7 @@
     "@sweetalert2/theme-dark": "^5.0.15",
     "@tailwindcss/typography": "^0.5.9",
     "fuse.js": "^6.6.2",
+    "ics": "^3.5.0",
     "jose": "^4.14.4",
     "svelte-spa-router": "^3.3.0",
     "sweetalert2": "^11.7.27",

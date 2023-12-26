@@ -9,5 +9,14 @@ include_once '../../Modules/Autoload.php';
 
 $user = init(Permission::Login);
 
-ok(Event::byOrganizerId($user->id));
+$all = Event::allWithShiftCount();
+$allWithOrganizerId = [];
+
+foreach ($all as $datum) {
+    if ($datum->organizer_id == $user->id) {
+        $allWithOrganizerId[] = $datum;
+    }
+}
+
+ok($allWithOrganizerId);
 

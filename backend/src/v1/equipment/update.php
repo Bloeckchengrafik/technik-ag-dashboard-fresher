@@ -41,5 +41,9 @@ if (isset($body->manufacturer_id)) {
     $equipment->manufacturer_id = intval($body->manufacturer_id);
 }
 
+if (isset($body->description)) {
+    $equipment->description = $body->description;
+}
+
 $equipment->save();
 ok([]);

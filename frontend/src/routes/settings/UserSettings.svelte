@@ -5,6 +5,7 @@
     import CheckInput from "../../lib/Forms/CheckInput.svelte";
     import Loader from "../../lib/Loader.svelte";
     import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
+    import Swal from "sweetalert2";
 
     export let user: UserSpec;
 
@@ -72,6 +73,14 @@
                     isStudent: amStudent
                 })
             }
+
+            await Swal.fire({
+                title: "Erfolgreich gespeichert",
+                icon: "success",
+                timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            });
         }}
                    disabled={amStudent && (tutor == null || year == null || year < 5 || year > 13 || tutor === "")}/>
     {/await}

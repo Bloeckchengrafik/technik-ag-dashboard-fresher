@@ -8,4 +8,4 @@ use function Modules\Utils\Json\ok;
 include_once '../../Modules/Autoload.php';
 
 $user = init(Permission::ViewAllEvents);
-ok(Event::all());
+ok(Event::allWithShiftCount());

@@ -7,8 +7,9 @@
     export let json: SortedEquipmentSpec;
     export let user: UserSpec;
     let dispatch = createEventDispatcher();
+    export let searchTerm: string;
 </script>
 
 {#each Object.keys(json).sort((a, b) => a.localeCompare(b, undefined, {numeric: true, sensitivity: "base"})) as key}
-    <EquipmentCategory categoryName="{key}" category={json[key]} {user} on:update={() => dispatch("update")}/>
+    <EquipmentCategory categoryName="{key}" {searchTerm} category={json[key]} {user} on:update={() => dispatch("update")}/>
 {/each}

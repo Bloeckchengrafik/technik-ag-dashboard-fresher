@@ -231,6 +231,7 @@ CREATE TABLE IF NOT EXISTS Equipment
     id              INTEGER PRIMARY KEY AUTO_INCREMENT,
     count           INTEGER NOT NULL,
     name            TEXT    NOT NULL,
+    description     TEXT    NOT NULL,
     category_id     INTEGER NOT NULL,
     location_id     INTEGER NOT NULL,
     manufacturer_id INTEGER NOT NULL,

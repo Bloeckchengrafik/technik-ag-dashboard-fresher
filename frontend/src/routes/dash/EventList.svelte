@@ -6,6 +6,8 @@
         title: string,
         description: string,
         from_time: string,
+        sumShiftNeeded: number,
+        sumUserShift: number
     }[];
 
     let datetimeFormatter = new Intl.DateTimeFormat('de-DE', {
@@ -49,7 +51,7 @@
 
     <div class="bg-light_fill dark:bg-dark_fill rounded shadow-lg p-5 mt-4 flex flex-row justify-between items-center">
         <div class="flex flex-col gap-1">
-            <span class="text-xl font-bold">{event.title}</span>
+            <span class="text-xl font-bold">{event.title}&nbsp; {#if event.sumShiftNeeded > 0}<span class="text-sm font-normal">({event.sumUserShift}/{event.sumShiftNeeded} Techniker eingetragen)</span>{/if}</span>
             <span class="text-sm text-gray-500 dark:text-gray-300">Startet am {datetimeFormatter.format(new Date(event.from_time.replace(" ", "T")))}</span>
         </div>
         <button class="mt-2 bg-primary hover:bg-primary_highlight text-white py-1 px-4 rounded">

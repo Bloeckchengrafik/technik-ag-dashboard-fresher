@@ -1,5 +1,4 @@
 <script lang="ts">
-    import desk from '../assets/scroller/desk.jpg';
     import Hero from "./Hero.svelte";
     import Banner from "./Banner.svelte";
     import Footer from "../lib/Footer.svelte";
@@ -8,7 +7,7 @@
     $currentTab = "home";
 </script>
 <div class="h-full">
-    <img src={desk} alt="desk"
+    <img src="/desk.png" alt="desk"
          class="absolute top-0 left-0 w-full h-full -z-10 object-cover opacity-90"/>
     <Hero/>
     <Banner/>

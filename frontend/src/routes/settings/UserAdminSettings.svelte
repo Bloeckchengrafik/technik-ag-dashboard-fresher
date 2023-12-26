@@ -52,8 +52,8 @@
                     <img src="{backend}v1/profile/avatar/generate.php?id={user.id}" alt="Avatar"
                          class="w-12 h-12 rounded-full">
                     <div class="flex flex-col">
-                        <p class="text-lg font-semibold">{user.firstname} {user.lastname}</p>
-                        <p class="text-sm text-gray-400">{user.email}</p>
+                        <p class="text-lg font-semibold wrap-all">{user.firstname} {user.lastname}</p>
+                        <p class="text-sm text-gray-400 wrap-all">{user.email}</p>
                     </div>
                 </div>
 
@@ -67,3 +67,9 @@
         {/each}
     {/await}
 </div>
+
+<style>
+    .wrap-all {
+        word-wrap: anywhere;
+    }
+</style>

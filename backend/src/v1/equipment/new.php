@@ -3,7 +3,6 @@
 use Modules\Equipment\Equipment;
 use Modules\Login\Permission;
 use function Modules\Utils\Api\init;
-use function Modules\Utils\Json\error;
 use function Modules\Utils\Json\ok;
 
 include_once '../../Modules/Autoload.php';
@@ -17,6 +16,7 @@ Equipment::create(
     intval($body->count),
     intval($body->category_id),
     intval($body->location_id),
-    intval($body->manufacturer_id)
+    intval($body->manufacturer_id),
+    $body->description
 );
 ok([]);

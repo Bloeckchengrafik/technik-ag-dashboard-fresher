@@ -23,7 +23,8 @@ $quiz = $db->prepare("
 SELECT Quiz.id                  AS quiz_id,
        Quiz.name                AS quiz_name,
        QuizCategory.name        AS category_name,
-       QuizAnswer.overall_score AS score
+       QuizAnswer.overall_score AS score,
+       QuizAnswer.id            AS qid
 FROM Quiz,
      QuizAnswer,
      QuizCategory
@@ -37,4 +38,13 @@ WHERE Quiz.id = QuizAnswer.quiz_id
 
 $quiz->execute([$user_id]);
 $quiz = $quiz->fetchAll(PDO::FETCH_ASSOC);
+
+for($i = 0; $i < count($quiz); $i++) {
+  $datum = $db->prepare("SELECT * FROM QuizQuestionAnswer, QuizQuestion WHERE quiz_answer_id = ? AND QuizQuestion.id = QuizQuestionAnswer.quiz_question_id");
+
+  $datum->execute([$quiz[$i]["qid"]]);
+  $datum = $datum->fetchAll(PDO::FETCH_ASSOC);
+  $quiz[$i]["dataset"] = $datum;
+}
+
 ok($quiz);

@@ -16,6 +16,7 @@
     let category_id = 0;
     let location_id = 0;
     let manufacturer_id = 0;
+    let desc = "";
 
     let queryNewPromise: Promise<{
         categories: {
@@ -46,12 +47,14 @@
             category_id = equipment.category_id;
             location_id = equipment.location_id;
             manufacturer_id = equipment.manufacturer_id;
+            desc = equipment.description;
         } else {
             count = "1";
             name = "";
             category_id = 0;
             location_id = 0;
             manufacturer_id = 0;
+            desc = "";
         }
     }
 
@@ -79,9 +82,10 @@
             <TextInput id="name" name="Name" bind:value={name}/>
             <TextInput id="count" name="Anzahl" type="number" bind:value={count}/>
         </div>
+        <TextInput id="desc" name="Beschreibung" bind:value={desc}/>
 
-        <h2 class="text-xl font-bold mt-4 mb-2">Kategorie</h2>
-        <div class="flex flex-col gap-2">
+        <details class="flex flex-col gap-2 mt-4 ">
+            <summary class="text-xl font-bold mb-2">Kategorie</summary>
             {#each queryData.categories as category}
                 <label class="flex flex-row justify-between items-center gap-2">
                     <div>
@@ -141,10 +145,10 @@
                     </button>
                 </div>
             {/if}
-        </div>
+        </details>
 
-        <h2 class="text-xl font-bold mt-4 mb-2">Standort</h2>
-        <div class="flex flex-col gap-2">
+        <details class="flex flex-col gap-2">
+        <summary class="text-xl font-bold mt-4 mb-2">Standort</summary>
             {#each queryData.locations as location}
                 <label class="flex flex-row justify-between items-center gap-2">
                     <div>
@@ -204,10 +208,10 @@
                     </button>
                 </div>
             {/if}
-        </div>
+        </details>
 
-        <h2 class="text-xl font-bold mt-4 mb-2">Hersteller</h2>
-        <div class="flex flex-col gap-2">
+        <details class="flex flex-col gap-2">
+        <summary class="text-xl font-bold mt-4 mb-2">Hersteller</summary>
             {#each queryData.manufacturers as manufacturer}
                 <label class="flex flex-row justify-between items-center gap-2">
                     <div>
@@ -267,7 +271,7 @@
                     </button>
                 </div>
             {/if}
-        </div>
+        </details>
 
         <SubmitBtn on:click={async () => {
             if (equipment) {
@@ -277,7 +281,8 @@
                     count,
                     category_id,
                     location_id,
-                    manufacturer_id
+                    manufacturer_id,
+                    "description": desc
                 });
             } else {
                 await apiPost("v1/equipment/new.php", {
@@ -285,7 +290,8 @@
                     count,
                     category_id,
                     location_id,
-                    manufacturer_id
+                    manufacturer_id,
+                    "description": desc
                 });
             }
             dispatch("update");

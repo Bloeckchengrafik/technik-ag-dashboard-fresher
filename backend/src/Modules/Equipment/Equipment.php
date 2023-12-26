@@ -17,6 +17,7 @@ class Equipment
         public string $location_name,
         public int    $manufacturer_id,
         public string $manufacturer_name,
+        public string $description,
     )
     {
     }
@@ -27,6 +28,7 @@ class Equipment
         $stmt = $pdo->prepare('SELECT Equipment.id               as id,
        Equipment.name             as name,
        Equipment.count            as count,
+       Equipment.description      as description,
        EquipmentCategory.name     as category,
        EquipmentCategory.id       as category_id,
        EquipmentLocation.name     as location,
@@ -58,19 +60,21 @@ WHERE Equipment.category_id = EquipmentCategory.id
             $row['location'],
             $row['manufacturer_id'],
             $row['manufacturer'],
+            $row['description']
         );
     }
 
-    public static function create(string $name, int $count, int $category, int $location, int $manufacturer): void
+    public static function create(string $name, int $count, int $category, int $location, int $manufacturer, string $description): void
     {
         $pdo = database();
-        $stmt = $pdo->prepare('INSERT INTO Equipment (name, count, category_id, location_id, manufacturer_id) VALUES (:name, :count, :category, :location, :manufacturer)');
+        $stmt = $pdo->prepare('INSERT INTO Equipment (name, count, category_id, location_id, manufacturer_id, description) VALUES (:name, :count, :category, :location, :manufacturer, :description)');
         $stmt->execute([
             'name' => $name,
             'count' => $count,
             'category' => $category,
             'location' => $location,
             'manufacturer' => $manufacturer,
+            'description' => $description
         ]);
     }
 
@@ -87,6 +91,7 @@ WHERE Equipment.category_id = EquipmentCategory.id
             'location_name' => $this->location_name,
             'manufacturer_id' => $this->manufacturer_id,
             'manufacturer_name' => $this->manufacturer_name,
+            'description' => $this->description,
         ];
     }
 
@@ -103,6 +108,7 @@ WHERE Equipment.category_id = EquipmentCategory.id
         $stmt = $pdo->prepare('SELECT Equipment.id               as id,
        Equipment.name             as name,
        Equipment.count            as count,
+       Equipment.description      as description,
        EquipmentCategory.name     as category,
        EquipmentCategory.id       as category_id,
        EquipmentLocation.name     as location,
@@ -130,6 +136,7 @@ WHERE Equipment.category_id = EquipmentCategory.id
                 $row['location'],
                 $row['manufacturer_id'],
                 $row['manufacturer'],
+                $row['description']
             );
         }
 
@@ -139,7 +146,7 @@ WHERE Equipment.category_id = EquipmentCategory.id
     public function save(): void
     {
         $pdo = database();
-        $stmt = $pdo->prepare('UPDATE Equipment SET name = :name, count = :count, category_id = :category_id, location_id = :location_id, manufacturer_id = :manufacturer_id WHERE id = :id');
+        $stmt = $pdo->prepare('UPDATE Equipment SET name = :name, count = :count, category_id = :category_id, location_id = :location_id, manufacturer_id = :manufacturer_id, description = :description WHERE id = :id');
         $stmt->execute([
             'id' => $this->id,
             'name' => $this->name,
@@ -147,6 +154,7 @@ WHERE Equipment.category_id = EquipmentCategory.id
             'category_id' => $this->category_id,
             'location_id' => $this->location_id,
             'manufacturer_id' => $this->manufacturer_id,
+            'description' => $this->description
         ]);
     }
 }

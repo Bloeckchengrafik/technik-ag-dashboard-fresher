@@ -105,8 +105,14 @@ export type EquipmentSpec = {
     location_name: string
     manufacturer_id: number
     manufacturer_name: string
+    description: string
 }
 
 export type SortedEquipmentSpec = {
     [key: string]: EquipmentSpec[]
+}
+
+async function confirm(toConfirm: string): boolean {
+
+
 }

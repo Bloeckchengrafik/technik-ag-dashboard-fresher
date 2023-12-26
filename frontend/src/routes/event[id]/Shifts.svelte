@@ -8,7 +8,8 @@
     import TextInput from "../../lib/Forms/TextInput.svelte";
     import DateTimeInput from "../../lib/Forms/DateTimeInput.svelte";
     import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
-    import {number} from "zod";
+    import ExportShifts from "./ExportShifts.svelte";
+    import Swal from "sweetalert2";
 
     export let event: FullEvent;
     export let user: UserSpec;
@@ -29,9 +30,11 @@
     function initShiftData() {
         if (shiftToEdit == null) {
             currentShiftName = "";
-            currentShiftStart = "";
-            currentShiftEnd = "";
+            currentShiftStart = event.from_time;
+            currentShiftEnd = event.to_time;
             currentShiftMaxParticipants = "";
+            console.log(event.from_time);
+
         } else {
             currentShiftName = shiftToEdit.name;
             currentShiftStart = shiftToEdit.from_time;
@@ -42,8 +45,8 @@
 </script>
 
 <div class="flex gap-2 h-full lg:mx-5 sm:pt-5 flex-col">
-    <h2 class="text-2xl font-bold sm:text-3xl">
-        Schichten
+    <h2 class="text-2xl font-bold sm:text-3xl flex items-center gap-2">
+        Schichten {#if event.shifts.length > 0 }<ExportShifts {user} {event}/>{/if}
     </h2>
     {#each event.shifts as shift}
         <Shift
@@ -58,7 +61,20 @@
                     dispatch("update");
                 }}
                 on:rm={async () => {
+                    let ans = Swal.fire({
+                        title: 'Schicht löschen?',
+                        text: "Diese Schicht wird unwiederruflich gelöscht.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ja, löschen!',
+                        cancelButtonText: 'Abbrechen'
+                    })
+
+                    if (!(await ans).isConfirmed) return;
                     await apiPost("v1/event/shift/remove.php?id=" + shift.id, {})
+                    await new Promise((r) => setTimeout(r, 500))
                     dispatch("update");
                 }}
                 on:edit={() => {
@@ -107,6 +123,8 @@
                     on:click={() => {
                         showEditModal = true;
                         shiftToEdit = null;
+
+                        initShiftData();
                     }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20">
                     <rect width="256" height="256" fill="none"/>

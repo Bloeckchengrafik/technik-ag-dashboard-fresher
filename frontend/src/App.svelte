@@ -15,4 +15,6 @@
 <main class="h-5/6">
     <Nav/>
     <Router {routes}/>
+
+    <div class="absolute bottom-2 right-2 text-transparent">Macht sinn</div>
 </main>

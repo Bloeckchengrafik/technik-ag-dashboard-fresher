@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Swal from "sweetalert2";
     import {apiGet, apiPost, backend} from "../../api";
     import SubmitBtn from "../../lib/Forms/SubmitBtn.svelte";
     import TextInput from "../../lib/Forms/TextInput.svelte";
@@ -33,6 +34,19 @@
 
                     <button class="flex items-center justify-center mr-2 w-8 h-8 rounded bg-primary hover:bg-primary_highlight focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 float-right"
                             on:click|preventDefault={async () => {
+                                let ans = Swal.fire({
+                                    title: 'Gruppe löschen?',
+                                    text: "Die Gruppe wird unwiderruflich gelöscht!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Ja, löschen!',
+                                    cancelButtonText: 'Abbrechen'
+                                })
+
+                                if (!(await ans).isConfirmed) return;
+
                                 await apiPost("v1/permissions/groups/delete.php", {
                                     id: role.id
                                 })

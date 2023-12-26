@@ -225,6 +225,16 @@ SQL
         return $events;
     }
 
+    public static function allWithShiftCount(): array
+    {
+        $result = database()->query('SELECT Event.*, COALESCE(shiftdata.sum, 0) as sumShiftNeeded, COALESCE(shiftdata.sumUserShift, 0) as sumUserShift FROM Event LEFT JOIN (SELECT SUM(Shift.needed) as sum, event_id, COUNT(UserShift.user_id) as sumUserShift FROM Shift LEFT JOIN UserShift ON Shift.id = UserShift.shift_id GROUP BY Shift.event_id) as `shiftdata` ON shiftdata.event_id = Event.id');
+        $events = [];
+        foreach ($result->fetchAll() as $row) {
+            $events[] = $row;
+        }
+        return $events;
+    }
+
     public static function byOrganizerId(int $organizer_id): array
     {
         $database = database();

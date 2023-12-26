@@ -91,7 +91,7 @@ use Modules\Login\User;
     </p>
     <br/>
     <p class="btn-container">
-        <a class="btn" href="https://goe-tec.goethe-bensheim.de">Zur Veranstaltungs&uuml;bersicht</a>
+        <a class="btn" href="https://goe-tec.goethe-projektserver.de">Zur Veranstaltungs&uuml;bersicht</a>
     </p>
     <br/>
     <p>

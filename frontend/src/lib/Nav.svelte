@@ -12,17 +12,11 @@
     let user: UserSpec | null = null;
     let userPermission = "Unbekannt";
 
-    let jwtPubKey = import.meta.env.VITE_BACKEND_JWT_PUBKEY
-
     $: (async () => {
-        let pubKey = await jose.importSPKI(jwtPubKey, 'RS256')
-
         try {
-            let verified = await jose.jwtVerify($apiToken, pubKey, {
-                algorithms: ['RS256']
-            })
-
-            user = verified.payload.user as UserSpec
+            let payload = atob($apiToken.split('.')[1])
+            let verified = JSON.parse(payload)
+            user = verified.user as UserSpec
 
             if (user.permission.includes("showAsAdmin")) userPermission = "Administrator"
             else if (user.permission.includes("showAsManager")) userPermission = "Manager"
@@ -67,11 +61,6 @@
                         <a href="/register" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all" use:link
                            class:active={$currentTab === "register"}>
                             Registrieren
-                        </a>
-                        <a href="/status" class="block mt-4 lg:inline-block lg:mt-0 mr-4 all"
-                           class:active={$currentTab === "status"}
-                           use:link>
-                            Systemstatus
                         </a>
                         <a href="//goethe-bensheim.de/" class="block mt-4 lg:inline-block lg:mt-0 mr-4">
                             Zum Goethe-Gymnasium

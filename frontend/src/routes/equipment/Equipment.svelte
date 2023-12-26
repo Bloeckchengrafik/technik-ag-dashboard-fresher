@@ -17,13 +17,14 @@
     export let user: UserSpec;
 
     let showNew = false;
+    let searchTerm = "";
 </script>
 
 <AuthGuard requiredPermission="equipmentView" bind:user/>
 
 <div class="min-h-full max-w-7xl pt-2 px-1 mx-auto mb-2">
-    <h1 class="text-2xl font-semibold">
-        Unser Equipment
+    <h1>
+        <span class="text-2xl font-semibold">Unser Equipment</span>
         <button class="float-right" on:click={() => {
             showNew = true;
         }}>
@@ -31,6 +32,9 @@
                 <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
             </svg>
         </button>
+        <div class="float-right max-w-7xl mr-3">
+            <input type="text" class="bg-transparent border-gray-600 border rounded px-2" placeholder="Suche" bind:value={searchTerm}>
+        </div>
     </h1>
     <br/>
 
@@ -54,7 +58,7 @@
         <p>Loading...</p>
     {:then json}
         {#if user}
-            <EquipmentView {json} {user} on:update={async () => {
+            <EquipmentView {json} {user} {searchTerm} on:update={async () => {
                 // noinspection JSValidateTypes
                 jsonPromise = Promise.resolve(await apiGet('v1/equipment/query.php?tab=' + tab).then(res => res.json()));
             }}/>
@@ -65,6 +69,7 @@
     <EquipmentEditModal {user} on:closeme={() => showNew = false} on:update={async () => {
         // noinspection JSValidateTypes
         jsonPromise = Promise.resolve(await apiGet('v1/equipment/query.php?tab=' + tab).then(res => res.json()));
+        showNew = false;
     }}/>
 {/if}
 <br />

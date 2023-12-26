@@ -18,6 +18,7 @@
             <span class="pr-2">Kategorie:</span> <b>{equipment.category_name}</b>
             <span class="pr-2">Hersteller:</span> <b>{equipment.manufacturer_name}</b>
             <span class="pr-2">Lager:</span> <b>{equipment.location_name}</b>
+            <span class="pr-2">Beschreibung:</span> <b>{equipment.description}</b>
         </p>
         <p class="flex sm:flex-row flex-col ml-auto mt-2 sm:mt-0">
             {#if user.permission.includes("equipmentChange")}

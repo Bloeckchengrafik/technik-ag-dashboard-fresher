@@ -164,8 +164,21 @@
             <ul>
                 {#each quizzes as quiz}
                     <li>
-                        <h3 class="text-xl inline">{quiz.quiz_name}</h3> <span
-                            class="text-neutral-300">({scoreString[quiz.score]})</span>
+                        <div>
+                            <details>
+                                <summary class="text-xl">{quiz.quiz_name} <span
+                                    class="text-neutral-300">({scoreString[quiz.score]})</span></summary>
+                                <div>
+                                <ul class="list-disc ml-5">
+                                    {#each quiz.dataset as ds}
+                                        <li>
+                                            {ds.question} <span class="text-neutral-300">({scoreString[ds.answer_score]})</span>
+                                        </li>
+                                    {/each}
+                                </ul>
+                                </div>
+                            </details>
+                        </div>
                     </li>
                 {/each}
             </ul>

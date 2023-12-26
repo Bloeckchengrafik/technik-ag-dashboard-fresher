@@ -8,23 +8,26 @@ include_once '../../Modules/Autoload.php';
 
 init();
 
-$db = database();
-$stmt = $db->prepare('SELECT * FROM Room');
+$pdo = database();
+$stmt = $pdo->prepare('SELECT `id`, `name` FROM Room');
 $stmt->execute();
-$rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
-ok($rooms);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$rooms = $stmt->fetchAll();
+echo "[";
+$first = true;
+foreach ($rooms as $room) {
+    if ($first) {
+        $first = false;
+    } else {
+        echo ",";
+    }
+    echo "{";
+    echo "\"id\":";
+    echo $room['id'];
+    echo ",";
+    echo "\"name\":";
+    echo "\"";
+    echo $room['name'];
+    echo "\"";
+    echo "}";
+}
+echo "]";

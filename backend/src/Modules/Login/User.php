@@ -241,9 +241,13 @@ SQL);
         $stmt->execute([$this->id]);
         $stmtGroups->execute([$this->id]);
         $results = $stmt->fetchAll();
-        $results = array_merge($results, $stmtGroups->fetchAll());
+        $resultsGroup = $stmtGroups->fetchAll();
         $perms = [];
         foreach ($results as $result) {
+            $perms[] = $result['name'];
+        }
+
+        foreach ($resultsGroup as $result) {
             $perms[] = $result['name'];
         }
         return $perms;

@@ -43,11 +43,13 @@ SQL);
 $participated_seconds_stmt->execute([$user->id]);
 $participated_seconds = $participated_seconds_stmt->fetchColumn();
 // to days and hours (render days only if > 0)
-$participated_time = "ERROR";
-if (floor($participated_seconds / 86400) > 0) {
-    $participated_time = floor($participated_seconds / 86400) . "d " . gmdate("H", $participated_seconds) . "h " . gmdate("i", $participated_seconds) . "m";
-} else {
-    $participated_time = gmdate("H", $participated_seconds) . "h " . gmdate("i", $participated_seconds) . "m";
+$participated_time = "Keine";
+if ($participated_seconds != NULL) {
+    if (floor($participated_seconds / 86400) > 0) {
+        $participated_time = floor($participated_seconds / 86400) . "d " . gmdate("H", $participated_seconds) . "h " . gmdate("i", $participated_seconds) . "m";
+    } else {
+        $participated_time = gmdate("H", $participated_seconds) . "h " . gmdate("i", $participated_seconds) . "m";
+    }
 }
 
 
